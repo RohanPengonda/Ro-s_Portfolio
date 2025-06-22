@@ -1,0 +1,71 @@
+export const projects = [
+  {
+    title: "BlinkIt Clone - Full Stack E-commerce",
+    description:
+      "Built a BlinkIt-inspired e-commerce platform using the MERN stack with secure authentication, real-time order tracking, and an admin dashboard. Integrated OTP-based email verification, product catalog with search and filters, shopping cart, multi-payment gateway, and a responsive UI. Enhanced performance using caching and ensured mobile compatibility.",
+    image: "",
+    technologies: ["React.js", "Node.js", "Express.js", "MongoDB", "Tailwind CSS", "JWT", "Stripe"],
+    features: [
+      "JWT-based Authentication with Refresh Tokens",
+      "OTP Email Verification & Password Recovery",
+      "Product Catalog with Categories & Search",
+      "Shopping Cart & Secure Checkout",
+      "Order Tracking & Order History",
+      "Admin Panel for Inventory & Role Management",
+      "Multi-Payment Gateway Integration",
+      "Responsive UI Design"
+    ],
+    liveLink: "https://binkey-it-clone.vercel.app/",
+    githubLink: "https://github.com/RohanPengonda/BlinkIt_Clone"
+  },
+  {
+    title: "Netflix Clone",
+    description:
+      "Built a full-stack streaming platform replica using the MERN stack with secure JWT-based authentication, dynamic movie/TV library from TMDB API, personalized watchlists, and responsive UI. Implemented Redux for state management and integrated CI/CD with Firebase & GitHub Actions for streamlined deployment.",
+    image: "",
+    technologies: ["React", "Redux", "Node.js", "MongoDB", "Express.js", "Firebase", "TMDB API"],
+    features: [
+      "User Authentication (JWT)",
+      "Movie & TV Library Integration (TMDB)",
+      "Dynamic Search & Genre Filtering",
+      "Personalized Watchlist",
+      "Responsive Design",
+      "CI/CD with Firebase & GitHub Actions"
+    ],
+    liveLink: "",
+    githubLink: "https://github.com/RohanPengonda/Netflix_Clone"
+  },
+  {
+    title: "Real-time Chat App",
+    description:
+      "Developed a real-time chat application using Next.js and MongoDB, enabling users to sign in and exchange messages with others. Implemented a responsive UI with Tailwind CSS and real-time updates via efficient database queries. Focused on user-centric design, authentication, and smooth chat experience.",
+    image: "",
+    technologies: ["Next.js", "MongoDB", "Tailwind CSS", "JavaScript"],
+    features: [
+      "User Authentication",
+      "One-to-One Messaging",
+      "Real-time Message Updates",
+      "Responsive UI Design",
+      "User List & Conversation View"
+    ],
+    liveLink: "",
+    githubLink: "https://github.com/RohanPengonda/Chat_App"
+  },
+  {
+    title: "SHOPNOW",
+    description:
+      "Developed a full-stack e-commerce application using the MERN stack with secure JWT-based authentication, dynamic product catalog with filters, shopping cart, order management, and responsive design. Integrated RESTful APIs for user, product, and order operations, ensuring a smooth and secure shopping experience. Optimized performance using lazy loading and error handling for robust UX.",
+    image: "",
+    technologies: ["React", "Node.js", "MongoDB", "Express.js"],
+    features: [
+      "User Authentication (JWT, Hashed Passwords)",
+      "Product Filtering",
+      "Shopping Cart with Real-time Updates",
+      "Order Processing System",
+      "Responsive Design",
+      "RESTful API Integration"
+    ],
+    liveLink: "",
+    githubLink: "https://github.com/RohanPengonda/ShopNow"
+  }
+]; 
