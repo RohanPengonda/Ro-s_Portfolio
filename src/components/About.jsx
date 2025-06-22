@@ -29,28 +29,26 @@ const About = () => {
             {/* Left Content */}
             <div>
               <h3 className="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-200">
-                Hi, I am Rohan Pengonda.
+                Hi, I'm Rohan Pengonda
               </h3>
               <p className="text-lg text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                A Full-stack Developer passionate about creating and delivering projects that make a real-world impact.
+                I'm a Full-Stack Developer experienced in building modern, scalable web applications. I specialize in React.js, Next.js, Node.js, and MongoDB, crafting responsive UIs and secure backends.
               </p>
               <p className="text-lg text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                I specialize in full-stack development with React.js, Next.js and Express.js, using JavaScript for type safety. 
-                I have experience with modern web technologies and tools.
+                I work with JavaScript, TypeScript, Tailwind CSS, and RESTful APIs, and have deployed apps using AWS and Firebase for real-world performance and scalability.
               </p>
               <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
-                Have an idea, want to collaborate, or have an internship opportunity? Feel free to message me! 
-                I'm always excited to connect and work on great projects.
+                Currently exploring AI integration to build smarter applications. I'm always open to collaborations, projects, or internship opportunities feel free to connect!
               </p>
 
               {/* Key Stats */}
               <div className="grid grid-cols-3 gap-6">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-600 mb-2">10+</div>
+                  <div className="text-3xl font-bold text-blue-600 mb-2">20+</div>
                   <div className="text-gray-600 dark:text-gray-400">Projects Completed</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-purple-600 mb-2">5+</div>
+                  <div className="text-3xl font-bold text-purple-600 mb-2">10+</div>
                   <div className="text-gray-600 dark:text-gray-400">Technologies Mastered</div>
                 </div>
                 <div className="text-center">

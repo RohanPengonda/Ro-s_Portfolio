@@ -92,7 +92,7 @@ const Projects = () => {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex gap-4">
+                    <div className="flex gap-4 justify-center">
                       {project.liveLink && (
                         <a
                           href={project.liveLink}
