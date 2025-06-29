@@ -28,8 +28,12 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto">
           {/* Profile Image */}
           <div className="mb-4 sm:mb-5 mt-4 sm:mt-9">
-            <div className="w-24 h-24 sm:w-32 sm:h-32 mx-auto bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-3xl sm:text-5xl font-bold shadow-2xl">
-              RP
+            <div className="w-24 h-24 sm:w-32 sm:h-32 mx-auto bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl overflow-hidden">
+              <img 
+                src="/Logo.png" 
+                alt="Rohan Pengonda Logo" 
+                className="w-full h-full object-cover rounded-full"
+              />
             </div>
           </div>
 
