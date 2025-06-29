@@ -1,6 +1,7 @@
 import blinkitBanner from '../assets/blinkit-banner.png';
 import netflixBanner from '../assets/netflix-banner.png';
 import shopnowBanner from '../assets/shopnow-banner.png';
+import chatBanner from '../assets/chat-banner.png';
 // import chatAppBanner from '../assets/chat-app-banner.jpg';
 
 export const projects = [
@@ -62,7 +63,7 @@ export const projects = [
     title: "Real-time Chat App",
     description:
       "Developed a real-time chat application using Next.js and MongoDB, enabling users to sign in and exchange messages with others. Implemented a responsive UI with Tailwind CSS and real-time updates via efficient database queries. Focused on user-centric design, authentication, and smooth chat experience.",
-    image: "",
+    image: chatBanner,
     technologies: ["Next.js", "MongoDB", "Tailwind CSS", "JavaScript"],
     features: [
       "User Authentication",
@@ -71,7 +72,7 @@ export const projects = [
       "Responsive UI Design",
       "User List & Conversation View"
     ],
-    liveLink: "",
+    liveLink: "https://ro-chat-new.vercel.app/login",
     githubLink: "https://github.com/RohanPengonda/Chat_App"
   },
 ]; 
