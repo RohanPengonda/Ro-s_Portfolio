@@ -7,8 +7,11 @@ import {
   Github,
   Linkedin,
   Twitter,
+  CheckCircle,
+  AlertCircle,
 } from "lucide-react";
 import { contactInfo, socialLinks } from "../data/contactData";
+import { useFormValidation } from '../hooks/useFormValidation';
 
 const iconMap = {
   Mail,
@@ -20,26 +23,63 @@ const iconMap = {
 };
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
+  const [submitStatus, setSubmitStatus] = useState(null);
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+  const validationRules = {
+    name: [{ required: true }, { minLength: 2 }],
+    email: [{ required: true }, { email: true }],
+    subject: [{ required: true }, { minLength: 5 }],
+    message: [{ required: true }, { minLength: 10 }]
   };
 
-  const handleSubmit = (e) => {
+  const {
+    formData,
+    errors,
+    isSubmitting,
+    setIsSubmitting,
+    handleChange,
+    validateForm,
+    resetForm
+  } = useFormValidation({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  }, validationRules);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-    // Reset form
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      setSubmitStatus('success');
+      resetForm();
+      
+      // Reset success message after 5 seconds
+      setTimeout(() => setSubmitStatus(null), 5000);
+    } catch (error) {
+      setSubmitStatus('error');
+      console.error('Form submission error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const getInputClass = (fieldName) => {
+    const baseClass = "w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-all duration-200";
+    const errorClass = "border-red-500 focus:ring-red-200 bg-red-50";
+    const successClass = "border-gray-300 focus:ring-blue-200 bg-white";
+    
+    return `${baseClass} ${errors[fieldName] ? errorClass : successClass}`;
   };
 
   return (
@@ -69,6 +109,25 @@ const Contact = () => {
               <h3 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-200 mb-4 sm:mb-6">
                 Send a Message
               </h3>
+
+              {submitStatus === 'success' && (
+                <div className="mb-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg flex items-center space-x-3">
+                  <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0" />
+                  <p className="text-green-800 dark:text-green-200">
+                    Thank you! Your message has been sent successfully. I'll get back to you soon.
+                  </p>
+                </div>
+              )}
+
+              {submitStatus === 'error' && (
+                <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg flex items-center space-x-3">
+                  <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400 flex-shrink-0" />
+                  <p className="text-red-800 dark:text-red-200">
+                    Sorry, there was an error sending your message. Please try again.
+                  </p>
+                </div>
+              )}
+
               <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div>
@@ -85,9 +144,12 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm sm:text-base"
+                      className={getInputClass('name')}
                       placeholder="Your name"
                     />
+                    {errors.name && (
+                      <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.name}</p>
+                    )}
                   </div>
                   <div>
                     <label
@@ -103,9 +165,12 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm sm:text-base"
+                      className={getInputClass('email')}
                       placeholder="your.email@example.com"
                     />
+                    {errors.email && (
+                      <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.email}</p>
+                    )}
                   </div>
                 </div>
 
@@ -123,9 +188,12 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm sm:text-base"
+                    className={getInputClass('subject')}
                     placeholder="What's this about?"
                   />
+                  {errors.subject && (
+                    <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.subject}</p>
+                  )}
                 </div>
 
                 <div>
@@ -142,17 +210,30 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows={4}
-                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm sm:text-base"
+                    className={getInputClass('message')}
                     placeholder="Tell me about your project or opportunity..."
                   ></textarea>
+                  {errors.message && (
+                    <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.message}</p>
+                  )}
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg font-semibold flex items-center justify-center gap-2 hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
+                  disabled={isSubmitting}
+                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg font-semibold flex items-center justify-center gap-2 hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-sm sm:text-base disabled:bg-gray-400 disabled:cursor-not-allowed"
                 >
-                  <Send size={16} className="sm:w-5 sm:h-5" />
-                  Send Message
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <span>Sending...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send size={16} className="sm:w-5 sm:h-5" />
+                      <span>Send Message</span>
+                    </>
+                  )}
                 </button>
               </form>
             </div>

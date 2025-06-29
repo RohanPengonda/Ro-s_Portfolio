@@ -9,6 +9,8 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import LoadingSpinner from "./components/LoadingSpinner";
 import { usePageLoad } from "./hooks/usePageLoad";
+import ErrorBoundary from './components/ErrorBoundary';
+import Analytics from './components/Analytics';
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -38,33 +40,27 @@ function App() {
   };
 
   if (isLoading) {
-    return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
-        <div className="text-center">
-          <LoadingSpinner size="xl" color="blue" className="mb-4" />
-          <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-300">
-            Loading Portfolio...
-          </h2>
-        </div>
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   return (
-    <div className={`min-h-screen bg-gray-50 dark:bg-gray-900 transition-all duration-500 ${
-      isVisible ? 'opacity-100' : 'opacity-0'
-    }`}>
-      <Header darkMode={darkMode} toggleTheme={toggleTheme} />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <ErrorBoundary>
+      <Analytics />
+      <div className={`min-h-screen bg-gray-50 dark:bg-gray-900 transition-all duration-500 ${
+        isVisible ? 'opacity-100' : 'opacity-0'
+      }`}>
+        <Header darkMode={darkMode} toggleTheme={toggleTheme} />
+        <main>
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Experience />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </ErrorBoundary>
   );
 }
 
