@@ -44,7 +44,7 @@ const About = () => {
               {/* Key Stats */}
               <div className="grid grid-cols-3 gap-4 sm:gap-6">
                 <div className="text-center">
-                  <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-1 sm:mb-2">20+</div>
+                  <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-1 sm:mb-2">30+</div>
                   <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Projects Completed</div>
                 </div>
                 <div className="text-center">
@@ -52,8 +52,8 @@ const About = () => {
                   <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Technologies Mastered</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl sm:text-3xl font-bold text-teal-600 mb-1 sm:mb-2">100%</div>
-                  <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Client Satisfaction</div>
+                  <div className="text-2xl sm:text-3xl font-bold text-teal-600 mb-1 sm:mb-2">100+</div>
+                  <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Coding Questions Solved</div>
                 </div>
               </div>
             </div>
