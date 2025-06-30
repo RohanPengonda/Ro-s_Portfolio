@@ -1,5 +1,5 @@
 import React from "react";
-import skillCategories from "../data/skillcategories";
+import skillCategories from "../data/skillCategories";
 const Skills = () => {
   return (
     <section
