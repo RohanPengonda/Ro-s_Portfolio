@@ -73,6 +73,6 @@ export const projects = [
       "User List & Conversation View"
     ],
     liveLink: "https://ro-chat-new.vercel.app/login",
-    githubLink: "https://github.com/RohanPengonda/Chat_App"
+    githubLink: "https://github.com/RohanPengonda/Ro_Chat"
   },
 ]; 
