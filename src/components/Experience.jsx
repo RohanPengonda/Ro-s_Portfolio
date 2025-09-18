@@ -100,9 +100,14 @@ const Experience = () => {
               Interested in working together or learning more about my
               experience?
             </p>
-            <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 sm:px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-sm sm:text-base">
-              View Full Resume
-            </button>
+            <a
+              href={import.meta.env.VITE_RESUME_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 sm:px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
+            >
+              View Full Resume            </a>
+            
           </div>
         </div>
       </div>

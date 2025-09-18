@@ -24,17 +24,20 @@ A modern, responsive portfolio website built with React, Vite, and Tailwind CSS.
 ## 📦 Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <your-repo-url>
    cd portfolio
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Start development server**
+
    ```bash
    npm run dev
    ```
@@ -46,7 +49,24 @@ A modern, responsive portfolio website built with React, Vite, and Tailwind CSS.
 
 ## 🛠️ Configuration
 
+### Environment Variables
+
+Create a `.env` file in the root directory to configure your personal information:
+
+```env
+# Resume Link
+VITE_RESUME_URL=https://your-resume-link.com
+
+# Contact Information
+VITE_EMAIL=your.email@example.com
+VITE_GITHUB_URL=https://github.com/yourusername
+VITE_LINKEDIN_URL=https://www.linkedin.com/in/yourprofile/
+```
+
+**Note**: All environment variables must be prefixed with `VITE_` to be accessible in the React application.
+
 ### Personal Information
+
 Update your personal information in the data files:
 
 - `src/data/contactData.js` - Contact information and social links
@@ -55,14 +75,8 @@ Update your personal information in the data files:
 - `src/data/skillCategories.js` - Skills and technologies
 - `src/data/navLinksData.js` - Navigation links
 
-### Analytics Setup
-To enable analytics tracking:
-
-1. Add your Google Analytics ID to the Analytics component
-2. Or integrate with your preferred analytics service
-3. Update tracking events as needed
-
 ### Form Submission
+
 The contact form currently simulates submission. To enable real form submission:
 
 1. Set up a backend API endpoint
@@ -101,119 +115,27 @@ src/
 └── App.jsx            # Main app component
 ```
 
-## 🎨 Customization
-
-### Colors and Theme
-Update the color scheme in `tailwind.config.js`:
-
-```javascript
-colors: {
-  primary: {
-    50: '#eff6ff',
-    // ... customize your color palette
-  }
-}
-```
-
-### Animations
-Add custom animations in `tailwind.config.js`:
-
-```javascript
-animation: {
-  'fade-in': 'fadeIn 0.5s ease-in-out',
-  // ... add your custom animations
-}
-```
-
-### Fonts
-Update fonts in `tailwind.config.js` and import in `index.css`:
-
-```javascript
-fontFamily: {
-  sans: ['Inter', 'system-ui', 'sans-serif'],
-}
-```
-
 ## 📱 Responsive Design
 
 The portfolio is fully responsive with breakpoints:
+
 - **Mobile**: < 640px
 - **Tablet**: 640px - 1024px
 - **Desktop**: > 1024px
 
-## 🔧 Development
 
-### Code Formatting
-The project uses Prettier for code formatting:
-
-```bash
-npm run format
-```
-
-### Linting
-ESLint is configured for code quality:
-
-```bash
-npm run lint
-```
-
-### Performance Monitoring
-The app includes performance monitoring for:
-- Core Web Vitals (LCP, FID, CLS)
-- Page load times
-- User interactions
-
-## 🚀 Deployment
-
-### Vercel (Recommended)
-1. Connect your GitHub repository to Vercel
-2. Vercel will automatically detect the Vite configuration
-3. Deploy with one click
-
-### Netlify
-1. Build the project: `npm run build`
-2. Upload the `dist` folder to Netlify
-3. Configure build settings if needed
-
-### GitHub Pages
-1. Add `gh-pages` dependency: `npm install --save-dev gh-pages`
-2. Add deploy script to `package.json`
-3. Run: `npm run deploy`
 
 ## 📈 Performance
 
 The portfolio is optimized for performance with:
+
 - **Lazy Loading**: Images and components load on demand
 - **Code Splitting**: Vendor and icon chunks are separated
 - **Image Optimization**: WebP format support and responsive images
 - **Minification**: Production builds are minified and optimized
 
-## 🔒 Security
-
-- Form validation prevents malicious input
-- External links use `rel="noopener noreferrer"`
-- No sensitive data in client-side code
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
 
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
 
-## 🙏 Acknowledgments
-
-- [React](https://reactjs.org/) - UI library
-- [Vite](https://vitejs.dev/) - Build tool
-- [Tailwind CSS](https://tailwindcss.com/) - CSS framework
-- [Lucide React](https://lucide.dev/) - Icons
-- [React Icons](https://react-icons.github.io/react-icons/) - Additional icons
-
----
-
-Built with ❤️ using modern web technologies
