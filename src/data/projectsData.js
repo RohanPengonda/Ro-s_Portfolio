@@ -2,9 +2,29 @@ import blinkitBanner from '../assets/blinkit-banner.png';
 import netflixBanner from '../assets/netflix-banner.png';
 import shopnowBanner from '../assets/shopnow-banner.png';
 import chatBanner from '../assets/chat-banner.png';
+import stockanalysis from '../assets/stockanalysis.png'
 // import chatAppBanner from '../assets/chat-app-banner.jpg';
 
 export const projects = [
+  {
+    title: "Stock Analysis and Prediction",
+    description:
+      "Built a comprehensive stock market analysis platform using React, Node.js, and Python with AI-powered price predictions. Features automated technical analysis with moving averages, machine learning forecasting, and dual chart visualization. Integrated file upload processing, real-time chart generation, and responsive UI for seamless stock data analysis.",
+    image: stockanalysis,
+    technologies: ["React.js", "Node.js", "Express.js", "Python", "Pandas", "Scikit-learn", "Matplotlib", "Tailwind CSS"],
+    features: [
+      "CSV/Excel File Upload & Processing",
+      "AI-Powered 7-Day Price Predictions",
+      "Moving Averages (50, 100, 200-day) Calculation",
+      "Dual Chart Visualization (Historical + Predictions)",
+      "Linear Regression Machine Learning Model",
+      "Flexible Date Format & Column Support",
+      "Real-time Chart Generation with Matplotlib",
+      "Responsive UI with Prediction Cards Display"
+    ],
+    liveLink: "https://stock-analysis-kohl.vercel.app/",
+    githubLink: "https://github.com/RohanPengonda/Stock_Analysis"
+  },  
   {
     title: "BlinkIt Clone - (E-commerce)",
     description:
