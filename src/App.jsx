@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -7,22 +7,16 @@ import Experience from "./components/Experience";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import LoadingSpinner from "./components/LoadingSpinner";
-import { usePageLoad } from "./hooks/usePageLoad";
-import ErrorBoundary from './components/ErrorBoundary';
-import Analytics from './components/Analytics';
+import ErrorBoundary from "./components/ErrorBoundary";
+import Analytics from "./components/Analytics";
+import ChatWidget from "./components/ChatWidget";
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
-  const { isLoading, isVisible } = usePageLoad(800);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      setDarkMode(savedTheme === "dark");
-    } else {
-      setDarkMode(window.matchMedia("(prefers-color-scheme: dark)").matches);
-    }
+    setDarkMode(savedTheme ? savedTheme === "dark" : true);
   }, []);
 
   useEffect(() => {
@@ -35,30 +29,23 @@ function App() {
     }
   }, [darkMode]);
 
-  const toggleTheme = () => {
-    setDarkMode(!darkMode);
-  };
-
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
+  const toggleTheme = () => setDarkMode((d) => !d);
 
   return (
     <ErrorBoundary>
       <Analytics />
-      <div className={`min-h-screen bg-gray-50 dark:bg-gray-900 transition-all duration-500 ${
-        isVisible ? 'opacity-100' : 'opacity-0'
-      }`}>
+      <div className="min-h-screen transition-colors duration-300 bg-mac-bg text-mac-text dark:bg-od-bg dark:text-od-fg">
         <Header darkMode={darkMode} toggleTheme={toggleTheme} />
         <main>
           <Hero />
           <About />
           <Skills />
-          <Projects />
           <Experience />
+          <Projects />
           <Contact />
         </main>
         <Footer />
+        <ChatWidget />
       </div>
     </ErrorBoundary>
   );

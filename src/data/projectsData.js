@@ -1,98 +1,145 @@
-import blinkitBanner from '../assets/blinkit-banner.png';
-import netflixBanner from '../assets/netflix-banner.png';
-import shopnowBanner from '../assets/shopnow-banner.png';
-import chatBanner from '../assets/chat-banner.png';
-import stockanalysis from '../assets/stockanalysis.png'
-// import chatAppBanner from '../assets/chat-app-banner.jpg';
+import chatBanner from "../assets/chat-banner.webp";
+import blinkitBanner from "../assets/blinkit-banner.webp";
 
 export const projects = [
   {
-    title: "Stock Analysis and Prediction",
-    description:
-      "Built a comprehensive stock market analysis platform using React, Node.js, and Python with AI-powered price predictions. Features automated technical analysis with moving averages, machine learning forecasting, and dual chart visualization. Integrated file upload processing, real-time chart generation, and responsive UI for seamless stock data analysis.",
-    image: stockanalysis,
-    technologies: ["React.js", "Node.js", "Express.js", "Python", "Pandas", "Scikit-learn", "Matplotlib", "Tailwind CSS"],
-    features: [
-      "CSV/Excel File Upload & Processing",
-      "AI-Powered 7-Day Price Predictions",
-      "Moving Averages (50, 100, 200-day) Calculation",
-      "Dual Chart Visualization (Historical + Predictions)",
-      "Linear Regression Machine Learning Model",
-      "Flexible Date Format & Column Support",
-      "Real-time Chart Generation with Matplotlib",
-      "Responsive UI with Prediction Cards Display"
+    title: "PDFChat",
+    tagline:
+      "An AI system that lets you have a conversation with your PDFs — with citations, not hallucinations.",
+    filename: "~/projects/pdfchat.ts",
+    image: chatBanner,
+    problem:
+      "Traditional PDF search fails at understanding context or relationships between concepts. Search returns keyword hits, not answers — and definitely not verifiable ones. PDFChat bridges that gap with semantic understanding so you can actually ask questions of a document and trust the response.",
+    architecture: [
+      "Frontend: React 19 + TypeScript + Vite",
+      "Backend: Express + TypeScript",
+      "Metadata: SQLite",
+      "Generation: Google Gemini API (2.5 Flash/Pro, switchable)",
     ],
-    liveLink: "https://stock-analysis-kohl.vercel.app/",
-    githubLink: "https://github.com/RohanPengonda/Stock_Analysis"
-  },  
+    highlights: [
+      {
+        title: "Custom hybrid search algorithm",
+        note: "the differentiator — beats pure vector search",
+        detail:
+          "Combines cosine similarity (weighted 40%) with keyword matching (weighted 60%) for more relevant retrieval than pure vector search.",
+        accent: "purple",
+      },
+      {
+        title: "Context-preserving chunking",
+        note: "keeps meaning across page boundaries",
+        detail:
+          "1000-character chunks with 100-character overlap to preserve context across page/section boundaries; embeddings generated in batches of 5 to respect API rate limits.",
+        accent: "cyan",
+      },
+      {
+        title: "Verifiable, streaming answers",
+        note: "answers you can defend",
+        detail:
+          "Streaming responses via Server-Sent Events, with citation parsing and confidence-scored source attribution so answers are verifiable, not just plausible.",
+        accent: "green",
+      },
+      {
+        title: "Multi-document mode",
+        note: "one PDF or the whole library",
+        detail:
+          "Query a single PDF or an entire collection of documents.",
+        accent: "orange",
+      },
+    ],
+    technologies: [
+      "React 19",
+      "TypeScript",
+      "Vite",
+      "Express",
+      "SQLite",
+      "Gemini 2.5",
+      "SSE",
+      "RAG",
+    ],
+    liveLink: "",
+    githubLink: "https://github.com/RohanPengonda/PDFChat",
+    position: "ai",
+  },
   {
-    title: "BlinkIt Clone - (E-commerce)",
-    description:
-      "Built a BlinkIt-inspired e-commerce platform using the MERN stack with secure authentication, real-time order tracking, and an admin dashboard. Integrated OTP-based email verification, product catalog with search and filters, shopping cart, multi-payment gateway, and a responsive UI. Enhanced performance using caching and ensured mobile compatibility.",
+    title: "Binkey-It",
+    tagline:
+      "A production-grade grocery-delivery e-commerce platform — the boring infrastructure work that actually matters at scale.",
+    filename: "~/projects/blinkit.ts",
     image: blinkitBanner,
-    technologies: ["React.js", "Node.js", "Express.js", "MongoDB", "Tailwind CSS", "JWT", "Stripe"],
-    features: [
-      "JWT-based Authentication with Refresh Tokens",
-      "OTP Email Verification & Password Recovery",
-      "Product Catalog with Categories & Search",
-      "Admin Panel for Inventory & Role Management",
-      "Shopping Cart & Secure Checkout",
-      "Order Tracking & Order History",
-      "Multi-Payment Gateway Integration",
-      "Responsive UI Design"
+    problem:
+      "E-commerce clones are easy to demo, hard to make real. The hard part isn't the storefront — it's authentication, reliable payments, database performance under load, and email that actually arrives. Binkey-It is built around the infrastructure decisions that separate a prototype from a production system.",
+    architecture: [
+      "Frontend: React 19, Redux Toolkit, Vite, Tailwind",
+      "Backend: Node/Express, MongoDB + Mongoose",
+      "Payments: Stripe + Razorpay",
+      "Media: Cloudinary",
+      "Email: Resend",
+    ],
+    highlights: [
+      {
+        title: "Database query optimization",
+        metric: "1200ms → 150ms",
+        note: "8× faster queries, no sacrifice",
+        detail:
+          "Fixed N+1 queries with Mongoose populate(), added indexes on frequently queried fields, added pagination. Query time dropped from 1200ms to 150ms.",
+        accent: "purple",
+      },
+      {
+        title: "State management",
+        metric: "~35% fewer re-renders",
+        note: "memoized, not magic",
+        detail:
+          "Restructured Redux into feature-based slices with memoized reselect selectors → ~35% reduction in unnecessary re-renders.",
+        accent: "cyan",
+      },
+      {
+        title: "Image upload performance",
+        metric: "~60% faster",
+        note: "client-side signed uploads",
+        detail:
+          "Moved to client-side signed uploads direct to Cloudinary instead of routing through the backend → ~60% faster uploads, less backend load.",
+        accent: "green",
+      },
+      {
+        title: "Email reliability",
+        metric: "99.5% delivery",
+        note: "no more ghost emails",
+        detail:
+          "Replaced Nodemailer/Gmail with the Resend API and retry logic → 99.5% delivery rate.",
+        accent: "orange",
+      },
+      {
+        title: "Security & payments",
+        note: "idempotent, signed, verified",
+        detail:
+          "JWT access/refresh token rotation, HTTP-only cookies (not localStorage), OTP email verification, idempotent payment processing with webhook signature validation to prevent duplicate orders on retry.",
+        accent: "red",
+      },
+    ],
+    metrics: [
+      { label: "Lighthouse mobile", value: "88" },
+      { label: "FCP", value: "1.2s" },
+      { label: "Time to Interactive", value: "2.8s" },
+      { label: "API p95", value: "180ms" },
+      { label: "DB query p95", value: "120ms" },
+      { label: "Uptime", value: "99.95%" },
+    ],
+    technologies: [
+      "React 19",
+      "Redux Toolkit",
+      "Vite",
+      "Tailwind",
+      "Node",
+      "Express",
+      "MongoDB",
+      "Mongoose",
+      "Stripe",
+      "Razorpay",
+      "Cloudinary",
+      "Resend",
     ],
     liveLink: "https://binkey-it-clone.vercel.app/",
-    githubLink: "https://github.com/RohanPengonda/BlinkIt_Clone"
+    githubLink: "https://github.com/RohanPengonda/BlinkIt_Clone",
+    position: "ecommerce",
   },
-  {
-    title: "Netflix Clone",
-    description:
-      "Built a full-stack streaming platform replica using the MERN stack with secure JWT-based authentication, dynamic movie/TV library from TMDB API, personalized watchlists, and responsive UI. Implemented Redux for state management and integrated CI/CD with Firebase & GitHub Actions for streamlined deployment.",
-    image: netflixBanner,
-    technologies: ["React", "Redux", "Node.js", "MongoDB", "Express.js", "Firebase", "TMDB API"],
-    features: [
-      "User Authentication (JWT)",
-      "Movie & TV Library Integration (TMDB)",
-      "Dynamic Search & Genre Filtering",
-      "Personalized Watchlist",
-      "Responsive Design",
-      "CI/CD with Firebase & GitHub Actions"
-    ],
-    liveLink: "",
-    githubLink: "https://github.com/RohanPengonda/Netflix_Clone"
-  },
- 
-  {
-    title: "SHOPNOW",
-    description:
-      "Developed a full-stack e-commerce application using the MERN stack with secure JWT-based authentication, dynamic product catalog with filters, shopping cart, order management, and responsive design. Integrated RESTful APIs for user, product, and order operations, ensuring a smooth and secure shopping experience. Optimized performance using lazy loading and error handling for robust UX.",
-    image: shopnowBanner,
-    technologies: ["React", "Node.js", "MongoDB", "Express.js"],
-    features: [
-      "User Authentication (JWT, Hashed Passwords)",
-      "Shopping Cart with Real-time Updates",
-      "Product Filtering",
-      "Order Processing System",
-      "Responsive Design",
-      "RESTful API Integration"
-    ],
-    liveLink: "",
-    githubLink: "https://github.com/RohanPengonda/ShopNow"
-  },
-  {
-    title: "Real-time Chat App",
-    description:
-      "Developed a real-time chat application using Next.js and MongoDB, enabling users to sign in and exchange messages with others. Implemented a responsive UI with Tailwind CSS and real-time updates via efficient database queries. Focused on user-centric design, authentication, and smooth chat experience.",
-    image: chatBanner,
-    technologies: ["Next.js", "MongoDB", "Tailwind CSS", "JavaScript"],
-    features: [
-      "User Authentication",
-      "One-to-One Messaging",
-      "Real-time Message Updates",
-      "Responsive UI Design",
-      "User List & Conversation View"
-    ],
-    liveLink: "https://ro-chat-new.vercel.app/login",
-    githubLink: "https://github.com/RohanPengonda/Ro_Chat"
-  },
-]; 
+];

@@ -1,122 +1,139 @@
-import React from 'react';
-import { ChevronDown, Download, Mail, Github, Linkedin } from 'lucide-react';
+import { motion, useReducedMotion } from "framer-motion";
+import { ChevronDown, Download, Mail, Github, Linkedin } from "lucide-react";
+import useTypewriter from "../hooks/useTypewriter";
+
+const RESUME_URL =
+  import.meta.env.VITE_RESUME_URL || `${import.meta.env.BASE_URL}resume.pdf`;
+const EMAIL = import.meta.env.VITE_EMAIL || "rpengonda1@gmail.com";
+const GITHUB = import.meta.env.VITE_GITHUB_URL || "https://github.com/RohanPengonda";
+const LINKEDIN =
+  import.meta.env.VITE_LINKEDIN_URL || "https://www.linkedin.com/in/rohanpengonda/";
 
 const Hero = () => {
-  const scrollToAbout = () => {
-    const aboutSection = document.querySelector('#about');
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: 'smooth' });
-    }
+  const reduceMotion = useReducedMotion();
+  const { displayed, done } = useTypewriter(
+    "Full-Stack Developer building AI-powered products"
+  );
+
+  const scrollTo = (id) => {
+    document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const fadeUp = (delay) => ({
+    initial: reduceMotion ? false : { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.5, delay, ease: [0.25, 0.46, 0.45, 0.94] },
+  });
 
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden py-10"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden py-24"
     >
-      {/* Background with gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-purple-900"></div>
+      <div className="absolute inset-0 bg-mac-bg dark:bg-od-bg" />
+      <div className="absolute inset-0 bg-code-lines opacity-[0.6] dark:opacity-[0.25]" />
+      <div className="absolute inset-0 bg-gutter opacity-40 dark:opacity-20" />
 
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -right-40 -top-40 h-80 w-80 animate-pulse rounded-full bg-blue-400 opacity-20 mix-blend-multiply blur-xl filter dark:bg-blue-600 dark:mix-blend-screen"></div>
-        <div className="animation-delay-2000 absolute -bottom-40 -left-40 h-80 w-80 animate-pulse rounded-full bg-purple-400 opacity-20 mix-blend-multiply blur-xl filter dark:bg-purple-600 dark:mix-blend-screen"></div>
-        <div className="animation-delay-4000 absolute left-40 top-40 h-60 w-60 animate-pulse rounded-full bg-teal-400 opacity-20 mix-blend-multiply blur-xl filter dark:bg-teal-600 dark:mix-blend-screen"></div>
-      </div>
-
-      <div className="container relative z-10 mx-auto px-4 text-center sm:px-6 lg:px-10">
-        <div className="mx-auto max-w-4xl">
-          {/* Profile Image */}
-          <div className="mb-4 mt-4 sm:mb-5 sm:mt-9">
-            <div className="mx-auto flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-blue-500 to-purple-600 shadow-2xl sm:h-32 sm:w-32">
+      <div className="container relative z-10 mx-auto max-w-5xl px-4 text-center sm:px-6">
+        {/* Avatar with animated ring */}
+        <motion.div
+          {...fadeUp(0.05)}
+          className="mx-auto mb-8 h-28 w-28 sm:h-32 sm:w-32"
+        >
+          <div className="avatar-ring relative h-full w-full rounded-full p-[3px]">
+            <div className="glass flex h-full w-full items-center justify-center overflow-hidden rounded-full p-0.5 shadow-mac">
               <img
-                src="/Logo.png"
-                alt="Rohan Pengonda Logo"
+                src="/Logo.webp"
+                alt="Rohan Pengonda"
                 className="h-full w-full rounded-full object-cover"
               />
             </div>
           </div>
+        </motion.div>
 
-          {/* Main Content */}
-          <h1 className="mb-3 text-3xl font-bold sm:mb-4 sm:text-4xl md:text-5xl lg:text-7xl">
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 bg-clip-text text-transparent">
-              Rohan Pengonda
+        {/* Name */}
+        <motion.h1
+          {...fadeUp(0.15)}
+          className="mb-4 text-4xl font-bold tracking-tight text-mac-text dark:text-white sm:text-5xl md:text-6xl"
+        >
+          Rohan Pengonda
+        </motion.h1>
+
+        {/* Typing headline */}
+        <motion.div
+          {...fadeUp(0.25)}
+          className="mb-5 flex items-center justify-center"
+        >
+          <h2 className="font-mono text-lg font-medium text-mac-text-secondary dark:text-gray-200 sm:text-xl md:text-2xl">
+            <span className="mr-1.5 text-od-green">$</span>
+            <span>
+              {displayed}
+              <span className={`cursor-blink ${done ? "opacity-100" : ""}`}>|</span>
             </span>
-          </h1>
-
-          <h2 className="mb-3 text-lg font-medium text-gray-700 dark:text-gray-300 sm:mb-4 sm:text-xl md:text-2xl lg:text-3xl">
-            Full-Stack Developer
           </h2>
+        </motion.div>
 
-          <p className="mx-auto mb-6 max-w-3xl px-2 text-sm leading-relaxed text-gray-600 dark:text-gray-400 sm:mb-8 sm:px-0 sm:text-base md:text-lg lg:text-xl">
-            "Passionate full-stack developer specializing in modern web
-            technologies, cloud solutions, and scalable applications.
-            Experienced in building innovative solutions that drive business
-            growth and enhance user experiences. Actively learning about AI and
-            deeply interested in integrating intelligent systems into modern
-            software solutions."
-          </p>
+        {/* Value prop */}
+        <motion.p
+          {...fadeUp(0.35)}
+          className="mx-auto mb-10 max-w-2xl text-sm leading-relaxed text-mac-text-secondary dark:text-gray-300 sm:text-base md:text-lg"
+        >
+          I design, build, and ship production-grade web applications — from RAG
+          systems that cite their sources, not fabricate them, to e-commerce
+          platforms that hold up at scale.
+        </motion.p>
 
-          {/* Action Buttons */}
-          <div className="mb-8 flex flex-col items-center justify-center gap-3 px-4 sm:mb-10 sm:flex-row sm:gap-4 sm:px-0">
-            <a
-              href={import.meta.env.VITE_RESUME_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex w-full transform items-center justify-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl sm:w-auto sm:px-8 sm:py-4 sm:text-base"
-            >
-              <Download size={18} className="sm:h-5 sm:w-5" />
-              Download Resume
-            </a>
-            <button
-              onClick={scrollToAbout}
-              className="w-full rounded-full border-2 border-blue-600 px-6 py-3 text-sm font-semibold text-blue-600 transition-all duration-300 hover:bg-blue-600 hover:text-white dark:text-blue-400 dark:hover:bg-blue-600 sm:w-auto sm:px-8 sm:py-4 sm:text-base"
-            >
-              Learn More
-            </button>
-          </div>
-
-          {/* Social Links */}
-          <div className="mb-4 flex justify-center space-x-4 sm:mb-0 sm:space-x-5">
-            <a
-              href={`mailto:${import.meta.env.VITE_EMAIL}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 text-gray-600 transition-colors duration-200 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
-            >
-              <Mail size={20} className="sm:h-6 sm:w-6" />
-            </a>
-
-            <a
-              href={import.meta.env.VITE_GITHUB_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 text-gray-600 transition-colors duration-200 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
-            >
-              <Github size={20} className="sm:h-6 sm:w-6" />
-            </a>
-
-            <a
-              href={import.meta.env.VITE_LINKEDIN_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 text-gray-600 transition-colors duration-200 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
-            >
-              <Linkedin size={20} className="sm:h-6 sm:w-6" />
-            </a>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="py-4 sm:py-6">
-          <button
-            onClick={scrollToAbout}
-            className="absolute left-1/2 -translate-x-1/2 transform animate-bounce text-gray-600 transition-colors duration-200 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
+        {/* Actions */}
+        <motion.div
+          {...fadeUp(0.45)}
+          className="mb-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
+        >
+          <a
+            href={RESUME_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-od-orange px-7 py-3 font-mono text-sm font-medium text-white shadow-md transition-all duration-200 hover:bg-od-orange/90 hover:shadow-glow-orange sm:w-auto"
           >
-            <ChevronDown size={24} className="sm:h-8 sm:w-8" />
+            <Download size={16} />
+            Download Resume
+          </a>
+          <button
+            onClick={() => scrollTo("#about")}
+            className="glass glass-hover w-full rounded-xl px-7 py-3 font-mono text-sm text-mac-text dark:text-gray-200 sm:w-auto"
+          >
+            <span className="mr-1 text-od-green">./</span>about-me
           </button>
-        </div>
+        </motion.div>
+
+        {/* Socials */}
+        <motion.div {...fadeUp(0.55)} className="flex justify-center space-x-4">
+          {[
+            { href: `mailto:${EMAIL}`, Icon: Mail, label: "Email" },
+            { href: GITHUB, Icon: Github, label: "GitHub" },
+            { href: LINKEDIN, Icon: Linkedin, label: "LinkedIn" },
+          ].map(({ href, Icon, label }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              className="glass glass-hover rounded-xl p-3 text-mac-text-secondary transition-colors hover:text-od-orange dark:text-gray-300"
+            >
+              <Icon size={20} />
+            </a>
+          ))}
+        </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <button
+        onClick={() => scrollTo("#about")}
+        aria-label="Scroll down"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce-slow text-mac-text-secondary transition-colors hover:text-od-orange dark:text-gray-400"
+      >
+        <ChevronDown size={26} />
+      </button>
     </section>
   );
 };

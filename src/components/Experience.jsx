@@ -1,113 +1,97 @@
-import React from "react";
 import { Calendar, MapPin, ChevronRight } from "lucide-react";
 import { experiences } from "../data/experienceData";
+import ScrollReveal from "./ui/ScrollReveal";
+import SectionLabel from "./ui/SectionLabel";
 
 const Experience = () => {
   return (
     <section
       id="experience"
-      className="py-12 sm:py-16 lg:py-20 bg-white dark:bg-gray-800 transition-colors duration-300"
+      className="section-alt py-16 transition-colors duration-300 sm:py-24"
     >
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-gray-900 dark:text-white">
-              Professional{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Experience
-              </span>
+        <div className="mx-auto max-w-4xl">
+          <ScrollReveal className="mb-12 sm:mb-16">
+            <SectionLabel
+              command="ls ./experience"
+              output="total 2 · drwxr-xr-x rohan 2 roles"
+            />
+            <h2 className="text-3xl font-bold tracking-tight text-mac-text dark:text-white sm:text-4xl md:text-5xl">
+              Professional <span className="text-od-purple">Experience</span>
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-              A journey of continuous learning and building innovative solutions
-              across various projects and technologies
-            </p>
-          </div>
+          </ScrollReveal>
 
-          {/* Experience Timeline */}
-          <div className="space-y-6 sm:space-y-8">
-            {experiences.map((exp, index) => (
-              <div
-                key={index}
-                className="bg-gray-50 dark:bg-gray-700 rounded-2xl p-6 sm:p-8 hover:shadow-lg transition-all duration-300 border-l-4 border-blue-500"
-              >
-                <div className="grid lg:grid-cols-4 gap-4 sm:gap-6">
-                  {/* Company Info */}
-                  <div className="lg:col-span-1">
-                    <h3 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-200 mb-2">
-                      {exp.company}
-                    </h3>
-                    <p className="text-base sm:text-lg text-blue-600 dark:text-blue-400 font-semibold mb-3">
-                      {exp.position}
-                    </p>
-                    <div className="space-y-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-                      <div className="flex items-center gap-2">
-                        <Calendar size={14} className="sm:w-4 sm:h-4" />
-                        <span>{exp.duration}</span>
+          {/* Vertical timeline */}
+          <div className="timeline-line space-y-12 sm:space-y-16">
+            {experiences.map((exp, index) => {
+              return (
+                <div key={index} className="relative pl-6 sm:pl-8">
+                  {/* Timeline dot */}
+                  <span
+                    className={`absolute left-0 top-2 h-3.5 w-3.5 rounded-full border-2 border-white shadow-sm dark:border-od-bg ${
+                      index === 0 ? "bg-od-orange" : "bg-od-purple"
+                    }`}
+                  />
+
+                  {/* Duration marker */}
+                  <div
+                    className={`mb-3 font-mono text-xs uppercase tracking-wider text-mac-text-secondary dark:text-gray-400 ${
+                      index === 0 ? "text-od-orange dark:text-od-orange" : ""
+                    }`}
+                  >
+                    <span className="inline-flex items-center gap-1.5">
+                      <Calendar size={12} />
+                      {exp.duration}
+                    </span>
+                    <span className="mx-2 text-mac-border dark:text-white/10">|</span>
+                    <span className="inline-flex items-center gap-1.5">
+                      <MapPin size={12} />
+                      {exp.location}
+                    </span>
+                  </div>
+
+                  {/* Card */}
+                  <ScrollReveal delay={0.05} y={20}>
+                    <div className="glass glass-hover rounded-2xl p-6 sm:p-8">
+                      <div className="mb-4">
+                        <h3 className="font-mono text-xl font-semibold text-mac-text dark:text-white sm:text-2xl">
+                          {exp.position}
+                        </h3>
+                        <p className="mt-1 font-mono text-sm text-od-orange dark:text-od-orange">
+                          {exp.company}
+                        </p>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <MapPin size={14} className="sm:w-4 sm:h-4" />
-                        <span>{exp.location}</span>
+
+                      <ul className="space-y-3">
+                        {exp.achievements.map((a, i) => (
+                          <li
+                            key={i}
+                            className="flex items-start gap-2.5 text-sm leading-relaxed text-mac-text-secondary dark:text-gray-300 sm:text-[15px]"
+                          >
+                            <ChevronRight
+                              size={16}
+                              className="mt-0.5 flex-shrink-0 text-od-green"
+                            />
+                            <span>{a}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div className="mt-5 flex flex-wrap gap-1.5">
+                        {exp.technologies.map((tech, ti) => (
+                          <span
+                            key={ti}
+                            className="rounded-lg border border-mac-border bg-white/60 px-2.5 py-1 font-mono text-xs text-mac-text-secondary dark:border-white/10 dark:bg-white/[0.03] dark:text-gray-300"
+                          >
+                            {tech}
+                          </span>
+                        ))}
                       </div>
                     </div>
-                  </div>
-
-                  {/* Achievements */}
-                  <div className="lg:col-span-2">
-                    <h4 className="text-base sm:text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3 sm:mb-4">
-                      Key Achievements
-                    </h4>
-                    <ul className="space-y-2 sm:space-y-3">
-                      {exp.achievements.map((achievement, achievementIndex) => (
-                        <li
-                          key={achievementIndex}
-                          className="flex items-start gap-2 sm:gap-3 text-xs sm:text-sm text-gray-600 dark:text-gray-400"
-                        >
-                          <ChevronRight
-                            size={14}
-                            className="text-blue-500 mt-0.5 flex-shrink-0 sm:w-4 sm:h-4"
-                          />
-                          <span>{achievement}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Technologies */}
-                  <div className="lg:col-span-1">
-                    <h4 className="text-base sm:text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3 sm:mb-4">
-                      Technologies
-                    </h4>
-                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                      {exp.technologies.map((tech, techIndex) => (
-                        <span
-                          key={techIndex}
-                          className="px-2 sm:px-3 py-1 bg-white dark:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg text-xs sm:text-sm border border-gray-200 dark:border-gray-500 hover:border-blue-300 dark:hover:border-blue-500 transition-colors duration-200"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+                  </ScrollReveal>
                 </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Call to Action */}
-          <div className="text-center mt-12 sm:mt-16">
-            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6">
-              Interested in working together or learning more about my
-              experience?
-            </p>
-            <a
-              href={import.meta.env.VITE_RESUME_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 sm:px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
-            >
-              View Full Resume            </a>
-            
+              );
+            })}
           </div>
         </div>
       </div>

@@ -1,85 +1,148 @@
-import React from 'react';
-import { Code, Lightbulb, BookOpen, Zap } from 'lucide-react';
-import { highlights } from '../data/highlightData';
+import { Terminal, Cpu, Rocket, GitBranch } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import ScrollReveal from "./ui/ScrollReveal";
+import SectionLabel from "./ui/SectionLabel";
+
+const principles = [
+  {
+    icon: Terminal,
+    title: "Full-stack, end to end",
+    detail: "MongoDB schemas to React components — I own the whole vertical slice.",
+    accent: "text-od-cyan",
+    bg: "bg-od-cyan/5",
+  },
+  {
+    icon: Cpu,
+    title: "Applied AI, not hype",
+    detail: "RAG pipelines, LLM integration, and systems that cite their sources.",
+    accent: "text-od-purple",
+    bg: "bg-od-purple/5",
+  },
+  {
+    icon: Rocket,
+    title: "Performance is a feature",
+    detail: "Indexes, caching, and measured Lighthouse scores — not vibes.",
+    accent: "text-od-green",
+    bg: "bg-od-green/5",
+  },
+  {
+    icon: GitBranch,
+    title: "Boring infrastructure wins",
+    detail: "Auth, payments, email, idempotency — the stuff that matters at scale.",
+    accent: "text-od-orange",
+    bg: "bg-od-orange/5",
+  },
+];
 
 const About = () => {
-  // Icon mapping
-  const iconMap = {
-    Code: Code,
-    Lightbulb: Lightbulb,
-    BookOpen: BookOpen,
-    Zap: Zap
-  };
+  const reduceMotion = useReducedMotion();
 
   return (
-    <section id="about" className="py-12 sm:py-16 lg:py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
+    <section
+      id="about"
+      className="section-alt py-16 transition-colors duration-300 sm:py-24"
+    >
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-gray-900 dark:text-white">
-              About <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Me</span>
+        <div className="mx-auto max-w-5xl">
+          <ScrollReveal className="mb-12 sm:mb-16">
+            <SectionLabel
+              command="whoami"
+              output="rohan ∈ { full-stack, applied AI, production engineering }"
+            />
+            <h2 className="text-3xl font-bold tracking-tight text-mac-text dark:text-white sm:text-4xl md:text-5xl">
+              About <span className="text-od-green">Me</span>
             </h2>
-            {/* <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-              A passionate full-stack developer dedicated to creating impactful solutions and driving digital innovation
-            </p> */}
-          </div>
+          </ScrollReveal>
 
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
-            {/* Left Content */}
-            <div>
-              <h3 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-gray-800 dark:text-gray-200">
-                Hi, I'm Rohan Pengonda
-              </h3>
-              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
-                I'm a Full-Stack Developer experienced in building modern, scalable web applications. I specialize in React.js, Next.js, Node.js, and MongoDB, crafting responsive UIs and secure backends.
-              </p>
-              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
-                I work with JavaScript, TypeScript, Tailwind CSS, and RESTful APIs, and have deployed apps using AWS and Firebase for real-world performance and scalability.
-              </p>
-              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-6 sm:mb-8 leading-relaxed">
-                Currently exploring AI integration to build smarter applications. I'm always open to collaborations, projects, or internship opportunities feel free to connect!
-              </p>
+          {/* Asymmetric split: photo left, text right */}
+          <ScrollReveal>
+            <div className="grid gap-8 lg:grid-cols-[280px_1fr] lg:gap-12">
+              {/* Photo column */}
+              <div className="flex flex-col items-center lg:items-start">
+                <motion.div
+                  initial={reduceMotion ? false : { opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="relative"
+                >
+                  <div className="glass-strong relative h-48 w-48 overflow-hidden rounded-2xl p-1 shadow-mac-lg sm:h-56 sm:w-56 lg:h-64 lg:w-64">
+                    <img
+                      src="/Logo.webp"
+                      alt="Rohan Pengonda"
+                      loading="lazy"
+                      className="h-full w-full rounded-xl object-cover"
+                    />
+                  </div>
+                  {/* Floating stat card */}
+                  <motion.div
+                    initial={reduceMotion ? false : { opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: 0.3 }}
+                    className="absolute -bottom-4 -right-2 rounded-xl border border-mac-border bg-white px-4 py-2.5 shadow-mac dark:border-white/10 dark:bg-od-surface sm:-right-4"
+                  >
+                    <div className="font-mono text-lg font-bold text-od-orange">5+</div>
+                    <div className="font-mono text-[10px] text-mac-text-secondary dark:text-gray-400">
+                      projects shipped
+                    </div>
+                  </motion.div>
+                </motion.div>
+              </div>
 
-              {/* Key Stats */}
-              <div className="grid grid-cols-3 gap-4 sm:gap-6">
-                <div className="text-center">
-                  <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-1 sm:mb-2">30+</div>
-                  <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Projects Completed</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl sm:text-3xl font-bold text-purple-600 mb-1 sm:mb-2">10+</div>
-                  <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Technologies Mastered</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl sm:text-3xl font-bold text-teal-600 mb-1 sm:mb-2">100+</div>
-                  <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Coding Questions Solved</div>
-                </div>
+              {/* Text column */}
+              <div className="space-y-4 text-[15px] leading-relaxed text-mac-text-secondary dark:text-gray-300">
+                <p>
+                  I'm a full-stack developer who builds AI-powered products —
+                  the kind of software that ships to real users and holds up
+                  under load. My work sits at the intersection of applied AI
+                  and production engineering: RAG systems that answer
+                  questions with citations, and e-commerce platforms that
+                  survive a flash sale without falling over.
+                </p>
+                <p>
+                  I care about measurable outcomes, not demo-ware. That means
+                  indexes and caching over slick slides, idempotent payments
+                  over happy-path demos, and Lighthouse scores I can point at
+                  rather than screenshots I can't defend.
+                </p>
+                <p>
+                  Right now I build full MERN applications for clients at Renb
+                  Digital, where I've cut page-load times by up to 30% and
+                  automated testing with Playwright. I'm always looking for the
+                  next interesting problem at the intersection of AI and
+                  reliability.
+                </p>
               </div>
             </div>
+          </ScrollReveal>
 
-            {/* Right Content - Highlights */}
-            <div className="space-y-4 sm:space-y-6">
-              {highlights.map((highlight, index) => (
-                <div 
-                  key={index}
-                  className="flex items-start space-x-3 sm:space-x-4 p-4 sm:p-6 bg-gray-50 dark:bg-gray-700 rounded-xl hover:bg-blue-50 dark:hover:bg-gray-600 transition-colors duration-300"
+          {/* Principles grid */}
+          <ScrollReveal delay={0.1}>
+            <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {principles.map((p, i) => (
+                <motion.div
+                  key={i}
+                  initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.35, delay: i * 0.07 }}
+                  className={`glass glass-hover group rounded-xl p-4 ${p.bg}`}
                 >
-                  <div className="text-blue-600 dark:text-blue-400 flex-shrink-0">
-                    {React.createElement(iconMap[highlight.iconName], { className: "w-6 h-6 sm:w-8 sm:h-8" })}
-                  </div>
-                  <div>
-                    <h4 className="text-lg sm:text-xl font-semibold mb-1 sm:mb-2 text-gray-800 dark:text-gray-200">
-                      {highlight.title}
-                    </h4>
-                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
-                      {highlight.description}
-                    </p>
-                  </div>
-                </div>
+                  <p.icon
+                    size={20}
+                    className={`mb-2 ${p.accent} transition-transform duration-200 group-hover:scale-110`}
+                  />
+                  <h4 className="mb-1 font-mono text-sm font-semibold text-mac-text dark:text-gray-100">
+                    {p.title}
+                  </h4>
+                  <p className="text-xs leading-relaxed text-mac-text-secondary dark:text-gray-400">
+                    {p.detail}
+                  </p>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>
