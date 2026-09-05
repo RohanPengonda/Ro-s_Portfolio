@@ -55,6 +55,8 @@ Create a `.env` file in the root directory to configure your personal informatio
 
 ```env
 # Resume Link
+VITE_GEMINI_API_KEY=API_KEY # Gemini AI assistant — https://aistudio.google.com/apikey (free tier)
+
 VITE_RESUME_URL=https://your-resume-link.com
 
 # Contact Information
