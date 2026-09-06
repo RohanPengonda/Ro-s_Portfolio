@@ -1,4 +1,4 @@
-# Personal Portfolio Website
+# Personal Portfolio
 
 A modern, responsive portfolio website built with React, Vite, and Tailwind CSS. Features include dark mode, lazy loading, form validation, and performance optimizations.
 
