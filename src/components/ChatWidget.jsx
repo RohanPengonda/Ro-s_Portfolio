@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Send, X, Bot, Sparkles, ChevronDown } from 'lucide-react';
@@ -340,7 +341,7 @@ const ChatWidget = () => {
               {!isAIConfigured() && (
                 <p className="mt-2 flex items-center gap-1.5 font-mono text-[10px] text-od-red">
                   <ChevronDown size={12} />
-                  Gemini not configured — add VITE_GEMINI_API_KEY
+                  Gemini not configured — add NEXT_PUBLIC_GEMINI_API_KEY
                 </p>
               )}
             </div>

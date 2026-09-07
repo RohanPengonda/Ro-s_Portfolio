@@ -1,3 +1,4 @@
+"use client";
 import { motion, useReducedMotion } from 'framer-motion';
 
 const ScrollReveal = ({ children, delay = 0, y = 24, className = '' }) => {

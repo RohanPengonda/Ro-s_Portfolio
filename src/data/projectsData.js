@@ -1,5 +1,6 @@
 import chatBanner from "../assets/chat-banner.webp";
 import blinkitBanner from "../assets/blinkit-banner.webp";
+import rochatBanner from "../assets/rochat-banner.png";
 
 export const projects = [
   {
@@ -141,5 +142,64 @@ export const projects = [
     liveLink: "https://binkey-it-clone.vercel.app/",
     githubLink: "https://github.com/RohanPengonda/BlinkIt_Clone",
     position: "ecommerce",
+  },
+  {
+    title: "Ro_Chat",
+    tagline:
+      "A modern real-time chat application with authentication, read receipts, and responsive design.",
+    filename: "~/projects/rochat.ts",
+    image: rochatBanner,
+    problem:
+      "Building a real-time chat app requires handling WebSocket connections, authentication, message persistence, and responsive UI — the infrastructure that separates a messaging demo from a production chat system.",
+    architecture: [
+      "Frontend: React + Next.js (App Router) + Tailwind CSS",
+      "Backend: Node.js + Express + MongoDB",
+      "Real-time: Socket.IO",
+      "Auth: JWT + bcryptjs with OTP verification",
+    ],
+    highlights: [
+      {
+        title: "Real-time messaging",
+        note: "Socket.IO with live updates",
+        detail:
+          "Instant bidirectional messaging using Socket.IO, with automatic reconnection and live message delivery without page refreshes.",
+        accent: "cyan",
+      },
+      {
+        title: "JWT authentication",
+        note: "email/phone signup + OTP",
+        detail:
+          "Secure authentication with JWT access/refresh token rotation, HTTP-only cookies, and OTP email verification for signup.",
+        accent: "purple",
+      },
+      {
+        title: "Read receipts",
+        note: "single/double tick system",
+        detail:
+          "WhatsApp-style read receipts with single tick (sent) and double tick (read) indicators, plus unread message badges per chat.",
+        accent: "green",
+      },
+      {
+        title: "Responsive design",
+        note: "mobile, tablet, desktop",
+        detail:
+          "Fully optimized responsive UI built with Tailwind CSS, providing a seamless experience across all screen sizes with smooth animations.",
+        accent: "orange",
+      },
+    ],
+    technologies: [
+      "React",
+      "Next.js",
+      "Tailwind",
+      "Node",
+      "Express",
+      "MongoDB",
+      "Socket.IO",
+      "JWT",
+      "bcryptjs",
+    ],
+    liveLink: "https://ro-chat-new.vercel.app/login",
+    githubLink: "https://github.com/RohanPengonda/Ro_Chat",
+    position: "chat",
   },
 ];

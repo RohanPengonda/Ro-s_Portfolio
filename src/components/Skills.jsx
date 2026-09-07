@@ -1,3 +1,4 @@
+"use client";
 import { motion, useReducedMotion } from "framer-motion";
 import { skillCategories } from "../data/skillsData";
 import ScrollReveal from "./ui/ScrollReveal";

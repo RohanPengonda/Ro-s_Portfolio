@@ -127,6 +127,32 @@ export const portfolioContext = {
       live: 'https://binkey-it-clone.vercel.app/',
       github: 'https://github.com/RohanPengonda/BlinkIt_Clone',
     },
+    {
+      title: 'Ro_Chat',
+      tagline:
+        'A modern real-time chat application with authentication, read receipts, and responsive design.',
+      problem:
+        'Building a real-time chat app requires handling WebSocket connections, authentication, message persistence, and responsive UI — the infrastructure that separates a messaging demo from a production chat system.',
+      highlights: [
+        'Real-time messaging using Socket.IO with instant bidirectional communication and automatic reconnection.',
+        'JWT authentication with email/phone signup, OTP verification, and HTTP-only cookie token rotation.',
+        'Read receipts with single/double tick indicators and unread message badges per chat.',
+        'Fully responsive UI with Tailwind CSS, optimized for mobile, tablet, and desktop with smooth animations.',
+      ],
+      technologies: [
+        'React',
+        'Next.js',
+        'Tailwind',
+        'Node',
+        'Express',
+        'MongoDB',
+        'Socket.IO',
+        'JWT',
+        'bcryptjs',
+      ],
+      live: 'https://ro-chat-new.vercel.app/login',
+      github: 'https://github.com/RohanPengonda/Ro_Chat',
+    },
   ],
   skills: {
     'Languages & Databases': [

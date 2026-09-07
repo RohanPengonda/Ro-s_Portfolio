@@ -1,13 +1,13 @@
+"use client";
 import { motion, useReducedMotion } from "framer-motion";
 import { ChevronDown, Download, Mail, Github, Linkedin } from "lucide-react";
 import useTypewriter from "../hooks/useTypewriter";
 
-const RESUME_URL =
-  import.meta.env.VITE_RESUME_URL || `${import.meta.env.BASE_URL}resume.pdf`;
-const EMAIL = import.meta.env.VITE_EMAIL || "rpengonda1@gmail.com";
-const GITHUB = import.meta.env.VITE_GITHUB_URL || "https://github.com/RohanPengonda";
+const RESUME_URL = process.env.NEXT_PUBLIC_RESUME_URL || "/resume.pdf";
+const EMAIL = process.env.NEXT_PUBLIC_EMAIL || "rpengonda1@gmail.com";
+const GITHUB = process.env.NEXT_PUBLIC_GITHUB_URL || "https://github.com/RohanPengonda";
 const LINKEDIN =
-  import.meta.env.VITE_LINKEDIN_URL || "https://www.linkedin.com/in/rohanpengonda/";
+  process.env.NEXT_PUBLIC_LINKEDIN_URL || "https://www.linkedin.com/in/rohanpengonda/";
 
 const Hero = () => {
   const reduceMotion = useReducedMotion();

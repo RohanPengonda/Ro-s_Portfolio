@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import {
@@ -17,9 +18,8 @@ import ScrollReveal from "./ui/ScrollReveal";
 import SectionLabel from "./ui/SectionLabel";
 
 const iconMap = { Mail, Phone, MapPin, Github, Linkedin };
-const EMAIL = import.meta.env.VITE_EMAIL || "rpengonda1@gmail.com";
-const RESUME_URL =
-  import.meta.env.VITE_RESUME_URL || `${import.meta.env.BASE_URL}resume.pdf`;
+const EMAIL = process.env.NEXT_PUBLIC_EMAIL || "rpengonda1@gmail.com";
+const RESUME_URL = process.env.NEXT_PUBLIC_RESUME_URL || "/resume.pdf";
 
 const Contact = () => {
   const [submitStatus, setSubmitStatus] = useState(null);
@@ -49,9 +49,9 @@ const Contact = () => {
 
     if (!validateForm()) return;
 
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
     if (!serviceId || !templateId || !publicKey) {
       setSubmitStatus("config-error");

@@ -1,15 +1,15 @@
+"use client";
 import { useState, useEffect } from "react";
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-import About from "./components/About";
-import Skills from "./components/Skills";
-import Experience from "./components/Experience";
-import Projects from "./components/Projects";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
-import ErrorBoundary from "./components/ErrorBoundary";
-import Analytics from "./components/Analytics";
-import ChatWidget from "./components/ChatWidget";
+import Header from "./Header";
+import Hero from "./Hero";
+import About from "./About";
+import Skills from "./Skills";
+import Experience from "./Experience";
+import Projects from "./Projects";
+import Contact from "./Contact";
+import Footer from "./Footer";
+import ErrorBoundary from "./ErrorBoundary";
+import ChatWidget from "./ChatWidget";
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -33,7 +33,6 @@ function App() {
 
   return (
     <ErrorBoundary>
-      <Analytics />
       <div className="min-h-screen transition-colors duration-300 bg-mac-bg text-mac-text dark:bg-od-bg dark:text-od-fg">
         <Header darkMode={darkMode} toggleTheme={toggleTheme} />
         <main>

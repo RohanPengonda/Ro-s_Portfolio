@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { navLinks } from "../data/navLinksData";

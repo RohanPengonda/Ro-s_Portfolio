@@ -1,9 +1,9 @@
 import { GoogleGenAI } from '@google/genai';
 import { SYSTEM_PROMPT } from '../data/portfolioContext';
 
-const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+const API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
 const DEFAULT_MODELS = [
-  import.meta.env.VITE_GEMINI_MODEL || 'gemini-3.6-flash',
+  process.env.NEXT_PUBLIC_GEMINI_MODEL || 'gemini-3.6-flash',
   'gemini-3.5-flash',
   'gemini-3.5-flash-lite',
 ];
@@ -61,7 +61,7 @@ async function completeFromModel(modelName, contents) {
 export async function askGemini(userMessage, onChunk) {
   if (!ai) {
     throw new Error(
-      'Gemini API key is not configured. Add VITE_GEMINI_API_KEY to your .env file.'
+      'Gemini API key is not configured. Add NEXT_PUBLIC_GEMINI_API_KEY to your .env file.'
     );
   }
 

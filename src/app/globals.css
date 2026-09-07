@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -64,7 +62,6 @@ html.dark {
     background-size: 100% 24px;
   }
 
-  /* Code-gutter line numbers down the page edges */
   .bg-gutter {
     background-image:
       linear-gradient(to right, rgba(120, 120, 140, 0.04) 1px, transparent 1px);
@@ -142,7 +139,6 @@ html.dark {
 .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
 .custom-scrollbar { scrollbar-width: thin; scrollbar-color: rgba(171, 178, 191, 0.4) transparent; }
 
-/* Avatar ring animation */
 .avatar-ring {
   position: relative;
 }
@@ -161,12 +157,10 @@ html.dark {
   }
 }
 
-/* Skill icon hover color */
 .skill-card:hover .skill-icon {
   color: var(--skill-color) !important;
 }
 
-/* Timeline connector */
 .timeline-line {
   position: relative;
 }
@@ -181,4 +175,9 @@ html.dark {
 }
 html.dark .timeline-line::before {
   background: linear-gradient(to bottom, rgba(171,178,191,0.2), transparent);
+}
+
+@keyframes ringSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

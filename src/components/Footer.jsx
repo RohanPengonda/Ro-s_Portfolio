@@ -1,10 +1,11 @@
+"use client";
 import { Heart, Github, Linkedin, Mail } from "lucide-react";
 import { navLinks } from "../data/navLinksData";
 
-const EMAIL = import.meta.env.VITE_EMAIL || "rpengonda1@gmail.com";
-const GITHUB = import.meta.env.VITE_GITHUB_URL || "https://github.com/RohanPengonda";
+const EMAIL = process.env.NEXT_PUBLIC_EMAIL || "rpengonda1@gmail.com";
+const GITHUB = process.env.NEXT_PUBLIC_GITHUB_URL || "https://github.com/RohanPengonda";
 const LINKEDIN =
-  import.meta.env.VITE_LINKEDIN_URL || "https://www.linkedin.com/in/rohanpengonda/";
+  process.env.NEXT_PUBLIC_LINKEDIN_URL || "https://www.linkedin.com/in/rohanpengonda/";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

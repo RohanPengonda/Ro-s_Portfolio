@@ -1,3 +1,6 @@
+"use client";
+import { useState } from "react";
+import Image from "next/image";
 import { ExternalLink, Github, BarChart3 } from "lucide-react";
 import { projects } from "../data/projectsData";
 import ScrollReveal from "./ui/ScrollReveal";
@@ -56,6 +59,11 @@ const PdfchatMockup = () => (
 );
 
 const Projects = () => {
+  const [expanded, setExpanded] = useState(false);
+  const INITIAL_COUNT = 2;
+  const visibleProjects = expanded ? projects : projects.slice(0, INITIAL_COUNT);
+  const hasMore = projects.length > INITIAL_COUNT;
+
   return (
     <section
       id="projects"
@@ -66,7 +74,7 @@ const Projects = () => {
           <ScrollReveal className="mb-12 sm:mb-16">
             <SectionLabel
               command="cat ./projects"
-              output="2 featured · flagship case studies"
+              output={`${projects.length} projects · flagship case studies`}
             />
             <h2 className="text-3xl font-bold tracking-tight text-mac-text dark:text-white sm:text-4xl md:text-5xl">
               Case <span className="text-od-cyan">Studies</span>
@@ -74,8 +82,8 @@ const Projects = () => {
           </ScrollReveal>
 
           <div className="space-y-16 sm:space-y-20">
-            {projects.map((project, index) => (
-              <div key={project.title} id={`project-${index}`}>
+            {visibleProjects.map((project) => (
+              <div key={project.title} id={`project-${projects.indexOf(project)}`}>
                 <ScrollReveal>
                   <TerminalCard filename={project.filename}>
                     {/* Header */}
@@ -113,18 +121,20 @@ const Projects = () => {
                       </div>
                     </div>
 
-                    {/* Image: code mockup for PDFChat, screenshot for Binkey-It */}
+                    {/* Image: code mockup for PDFChat, screenshot for others */}
                     <div className="mb-6">
                       {project.title === "PDFChat" ? (
                         <PdfchatMockup />
                       ) : (
                         project.image && (
-                          <div className="overflow-hidden rounded-xl border border-mac-border dark:border-white/10">
-                            <img
+                          <div className="relative h-44 w-full overflow-hidden rounded-xl border border-mac-border dark:border-white/10 sm:h-56">
+                            <Image
                               src={project.image}
                               alt={`${project.title} preview`}
-                              loading="lazy"
-                              className="h-44 w-full object-cover sm:h-56"
+                              fill
+                              sizes="(max-width: 768px) 100vw, 64rem"
+                              priority={project.title === "Binkey-It"}
+                              className="object-cover"
                             />
                           </div>
                         )
@@ -232,6 +242,19 @@ const Projects = () => {
               </div>
             ))}
           </div>
+
+          {hasMore && !expanded && (
+            <ScrollReveal className="mt-10 text-center">
+              <button
+                onClick={() => setExpanded(true)}
+                className="group inline-flex items-center gap-2 rounded-xl border border-mac-border bg-white/50 px-6 py-3 font-mono text-sm text-mac-text-secondary transition-all hover:border-od-cyan hover:text-od-cyan dark:border-white/15 dark:bg-white/[0.03] dark:text-gray-300 dark:hover:border-od-cyan dark:hover:text-od-cyan"
+              >
+                <span className="text-od-green">$</span>
+                view more projects
+                <span className="text-od-orange">→</span>
+              </button>
+            </ScrollReveal>
+          )}
 
           <ScrollReveal className="mt-14 text-center">
             <p className="mb-4 font-mono text-sm text-mac-text-secondary dark:text-gray-400">

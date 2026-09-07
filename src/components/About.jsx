@@ -1,3 +1,4 @@
+"use client";
 import { Terminal, Cpu, Rocket, GitBranch } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import ScrollReveal from "./ui/ScrollReveal";
@@ -75,7 +76,7 @@ const About = () => {
                     />
                   </div>
                   {/* Floating stat card */}
-                  <motion.div
+                  {/* <motion.div
                     initial={reduceMotion ? false : { opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -86,7 +87,7 @@ const About = () => {
                     <div className="font-mono text-[10px] text-mac-text-secondary dark:text-gray-400">
                       projects shipped
                     </div>
-                  </motion.div>
+                  </motion.div> */}
                 </motion.div>
               </div>
 
