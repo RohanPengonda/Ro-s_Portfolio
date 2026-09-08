@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "../components/ui/GradientText.css";
 @import "../components/ui/SpotlightCard.css";
 @import "../components/ui/ShinyText.css";
 @import "../components/ui/GlareHover.css";
@@ -130,13 +129,7 @@ html.dark {
     background-color: var(--section-projects);
   }
 
-  .text-gradient-orange {
-    background: linear-gradient(135deg, #e8751a, #d4621a);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
   }
-}
 
 @keyframes blink {
   0%, 100% { opacity: 1; }
