@@ -1,5 +1,5 @@
 "use client";
-import { Heart, Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 import { navLinks } from "../data/navLinksData";
 
 const EMAIL = process.env.NEXT_PUBLIC_EMAIL || "rpengonda1@gmail.com";
@@ -68,10 +68,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-8 flex flex-col items-center justify-between gap-2 border-t border-mac-border pt-6 text-xs text-mac-text-secondary dark:border-white/10 dark:text-gray-500 sm:flex-row">
-          <p>&copy; {currentYear} Rohan Pengonda. All rights reserved.</p>
-          <p className="flex items-center gap-1.5 font-mono">
-            built with <Heart size={12} className="text-od-red" /> react + tailwind + framer-motion
-          </p>
+        <p>&copy; {currentYear} Rohan Pengonda. All rights reserved.</p>
         </div>
 
         <div className="mt-6 flex items-center gap-2 font-mono text-[10px] text-mac-text-secondary/50 dark:text-gray-600">

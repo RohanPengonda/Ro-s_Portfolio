@@ -6,6 +6,8 @@ import { projects } from "../data/projectsData";
 import ScrollReveal from "./ui/ScrollReveal";
 import TerminalCard from "./ui/TerminalCard";
 import SectionLabel from "./ui/SectionLabel";
+import DecryptedText from "./ui/DecryptedText";
+import SpotlightCard from "./ui/SpotlightCard";
 
 const accentMap = {
   purple: "text-od-purple",
@@ -67,7 +69,7 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="section-primary py-16 transition-colors duration-300 sm:py-24"
+      className="section-projects py-16 transition-colors duration-300 sm:py-24"
     >
       <div className="container mx-auto px-4 sm:px-6">
         <div className="mx-auto max-w-5xl">
@@ -76,16 +78,28 @@ const Projects = () => {
               command="cat ./projects"
               output={`${projects.length} projects · flagship case studies`}
             />
-            <h2 className="text-3xl font-bold tracking-tight text-mac-text dark:text-white sm:text-4xl md:text-5xl">
-              Case <span className="text-od-cyan">Studies</span>
-            </h2>
+            <DecryptedText
+              text="Case Studies"
+              animateOn="view"
+              sequential={true}
+              revealDirection="start"
+              speed={100}
+              maxIterations={15}
+              useOriginalCharsOnly={true}
+              className="text-3xl font-bold tracking-tight text-mac-text dark:text-white sm:text-4xl md:text-5xl"
+              encryptedClassName="text-3xl font-bold tracking-tight text-od-orange/60 dark:text-od-orange/50 sm:text-4xl md:text-5xl"
+            />
           </ScrollReveal>
 
           <div className="space-y-16 sm:space-y-20">
             {visibleProjects.map((project) => (
               <div key={project.title} id={`project-${projects.indexOf(project)}`}>
                 <ScrollReveal>
-                  <TerminalCard filename={project.filename}>
+                  <SpotlightCard
+                    className="rounded-2xl"
+                    spotlightColor="rgba(82, 39, 255, 0.15)"
+                  >
+                    <TerminalCard filename={project.filename}>
                     {/* Header */}
                     <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                       <div>
@@ -238,6 +252,7 @@ const Projects = () => {
                       </div>
                     </div>
                   </TerminalCard>
+                  </SpotlightCard>
                 </ScrollReveal>
               </div>
             ))}

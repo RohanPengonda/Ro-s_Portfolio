@@ -1,7 +1,11 @@
 "use client";
 import { motion, useReducedMotion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { ChevronDown, Download, Mail, Github, Linkedin } from "lucide-react";
 import useTypewriter from "../hooks/useTypewriter";
+import WarpText from "./ui/WarpText";
+import HeroBackground from "./ui/HeroBackground";
+import ShinyText from "./ui/ShinyText";
 
 const RESUME_URL = process.env.NEXT_PUBLIC_RESUME_URL || "/resume.pdf";
 const EMAIL = process.env.NEXT_PUBLIC_EMAIL || "rpengonda1@gmail.com";
@@ -14,6 +18,20 @@ const Hero = () => {
   const { displayed, done } = useTypewriter(
     "Full-Stack Developer building AI-powered products"
   );
+
+  const [isDark, setIsDark] = useState(true);
+
+  useEffect(() => {
+    const isDarkMode = () =>
+      document.documentElement.classList.contains("dark");
+    setIsDark(isDarkMode());
+    const observer = new MutationObserver(() => setIsDark(isDarkMode()));
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+    return () => observer.disconnect();
+  }, []);
 
   const scrollTo = (id) => {
     document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
@@ -33,6 +51,9 @@ const Hero = () => {
       <div className="absolute inset-0 bg-mac-bg dark:bg-od-bg" />
       <div className="absolute inset-0 bg-code-lines opacity-[0.6] dark:opacity-[0.25]" />
       <div className="absolute inset-0 bg-gutter opacity-40 dark:opacity-20" />
+      <div className="absolute inset-0">
+        <HeroBackground />
+      </div>
 
       <div className="container relative z-10 mx-auto max-w-5xl px-4 text-center sm:px-6">
         {/* Avatar with animated ring */}
@@ -51,13 +72,30 @@ const Hero = () => {
           </div>
         </motion.div>
 
-        {/* Name */}
-        <motion.h1
+        {/* Name — WebGL Warp Text */}
+        <motion.div
           {...fadeUp(0.15)}
-          className="mb-4 text-4xl font-bold tracking-tight text-mac-text dark:text-white sm:text-5xl md:text-6xl"
+          className="mb-4"
         >
-          Rohan Pengonda
-        </motion.h1>
+          <WarpText
+            text="Rohan Pengonda"
+            color={isDark ? "#ffffff" : "#1D1D1F"}
+            warpStrength={0.06}
+            warpScale={1.5}
+            speed={0.45}
+            pointerInfluence={0.5}
+            pointerStrength={0.45}
+            refraction={0.02}
+            ripple={true}
+            fontSize="clamp(2.5rem, 8vw, 5.5rem)"
+            fontWeight={800}
+            fontFamily="var(--font-inter), Inter, sans-serif"
+            letterSpacing="-0.04em"
+            lineHeight={1}
+            className="mx-auto"
+            style={{ minHeight: "120px" }}
+          />
+        </motion.div>
 
         {/* Typing headline */}
         <motion.div
@@ -95,7 +133,13 @@ const Hero = () => {
             className="flex w-full items-center justify-center gap-2 rounded-xl bg-od-orange px-7 py-3 font-mono text-sm font-medium text-white shadow-md transition-all duration-200 hover:bg-od-orange/90 hover:shadow-glow-orange sm:w-auto"
           >
             <Download size={16} />
-            Download Resume
+            <ShinyText
+              text="Download Resume"
+              speed={3}
+              color="rgba(255,255,255,0.9)"
+              shineColor="#ffe9d6"
+              direction="left"
+            />
           </a>
           <button
             onClick={() => scrollTo("#about")}

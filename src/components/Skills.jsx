@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { skillCategories } from "../data/skillsData";
 import ScrollReveal from "./ui/ScrollReveal";
 import SectionLabel from "./ui/SectionLabel";
+import DecryptedText from "./ui/DecryptedText";
 
 const Skills = () => {
   const reduceMotion = useReducedMotion();
@@ -19,9 +20,17 @@ const Skills = () => {
               command="cat ./skills.json"
               output="23 entries · sorted by frequency of use ↓"
             />
-            <h2 className="text-3xl font-bold tracking-tight text-mac-text dark:text-white sm:text-4xl md:text-5xl">
-              Technical <span className="text-od-orange">Skills</span>
-            </h2>
+            <DecryptedText
+              text="Technical Skills"
+              animateOn="view"
+              sequential={true}
+              revealDirection="start"
+              speed={100}
+              maxIterations={15}
+              useOriginalCharsOnly={true}
+              className="text-3xl font-bold tracking-tight text-mac-text dark:text-white sm:text-4xl md:text-5xl"
+              encryptedClassName="text-3xl font-bold tracking-tight text-od-cyan/60 dark:text-od-cyan/50 sm:text-4xl md:text-5xl"
+            />
           </ScrollReveal>
 
           <div className="space-y-10">
@@ -43,14 +52,14 @@ const Skills = () => {
                         delay: i * 0.03 + catIndex * 0.05,
                       }}
                       whileHover={reduceMotion ? {} : { y: -3, scale: 1.02 }}
-                      className="skill-card glass group flex items-center gap-3 rounded-xl px-3.5 py-3 transition-all duration-200 hover:border-mac-border-dark hover:shadow-mac dark:hover:border-white/20 cursor-default"
+                      className="skill-card glass group flex w-full items-center justify-center gap-3 rounded-xl px-3.5 py-3 transition-all duration-200 hover:border-mac-border-dark hover:shadow-mac dark:hover:border-white/20 cursor-default"
                       style={{ "--skill-color": skill.color }}
                     >
                       <skill.icon
                         size={20}
                         className="skill-icon flex-shrink-0 text-gray-400 dark:text-gray-500"
                       />
-                      <span className="font-mono text-xs font-medium text-mac-text-secondary dark:text-gray-300 group-hover:text-mac-text dark:group-hover:text-white">
+                      <span className="whitespace-nowrap font-mono text-xs font-medium text-mac-text-secondary dark:text-gray-300 group-hover:text-mac-text dark:group-hover:text-white">
                         {skill.name}
                       </span>
                     </motion.div>

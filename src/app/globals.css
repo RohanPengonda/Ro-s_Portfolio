@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "../components/ui/GradientText.css";
+@import "../components/ui/SpotlightCard.css";
+@import "../components/ui/ShinyText.css";
+@import "../components/ui/GlareHover.css";
+@import "../components/ui/WarpText.css";
+
 :root {
   --glass-bg: rgba(255, 255, 255, 0.65);
   --glass-bg-strong: rgba(255, 255, 255, 0.8);
@@ -9,6 +15,7 @@
   --glass-border-hover: rgba(232, 117, 26, 0.35);
   --section-alt: #FFFFFF;
   --section-primary: #F5F5F7;
+  --section-projects: #F1EDF8;
 }
 
 html.dark {
@@ -18,6 +25,7 @@ html.dark {
   --glass-border-hover: rgba(232, 117, 26, 0.4);
   --section-alt: #1e2127;
   --section-primary: #282c34;
+  --section-projects: #282c34;
 }
 
 @layer base {
@@ -116,6 +124,10 @@ html.dark {
 
   .section-primary {
     background-color: var(--section-primary);
+  }
+
+  .section-projects {
+    background-color: var(--section-projects);
   }
 
   .text-gradient-orange {

@@ -16,6 +16,8 @@ import { contactInfo, socialLinks } from "../data/contactData";
 import { useFormValidation } from "../hooks/useFormValidation";
 import ScrollReveal from "./ui/ScrollReveal";
 import SectionLabel from "./ui/SectionLabel";
+import DecryptedText from "./ui/DecryptedText";
+import ShinyText from "./ui/ShinyText";
 
 const iconMap = { Mail, Phone, MapPin, Github, Linkedin };
 const EMAIL = process.env.NEXT_PUBLIC_EMAIL || "rpengonda1@gmail.com";
@@ -137,9 +139,17 @@ const Contact = () => {
               command="./contact.sh"
               output="channel open · usually reply within 24–48h"
             />
-            <h2 className="text-3xl font-bold tracking-tight text-mac-text dark:text-white sm:text-4xl md:text-5xl">
-              Get In <span className="text-od-orange">Touch</span>
-            </h2>
+            <DecryptedText
+              text="Get In Touch"
+              animateOn="view"
+              sequential={true}
+              revealDirection="start"
+              speed={100}
+              maxIterations={15}
+              useOriginalCharsOnly={true}
+              className="text-3xl font-bold tracking-tight text-mac-text dark:text-white sm:text-4xl md:text-5xl"
+              encryptedClassName="text-3xl font-bold tracking-tight text-od-purple/60 dark:text-od-purple/50 sm:text-4xl md:text-5xl"
+            />
           </ScrollReveal>
 
           <ScrollReveal>
@@ -253,11 +263,22 @@ const Contact = () => {
                     {isSubmitting ? (
                       <>
                         <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                        sending...
+                        <ShinyText
+                          text="sending..."
+                          speed={1.5}
+                          color="rgba(255,255,255,0.7)"
+                          shineColor="#ffffff"
+                        />
                       </>
                     ) : (
                       <>
-                        <Send size={15} /> send message
+                        <Send size={15} />{" "}
+                        <ShinyText
+                          text="send message"
+                          speed={3}
+                          color="rgba(255,255,255,0.9)"
+                          shineColor="#ffffff"
+                        />
                       </>
                     )}
                   </button>

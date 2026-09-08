@@ -2,6 +2,7 @@ import { Calendar, MapPin, ChevronRight } from "lucide-react";
 import { experiences } from "../data/experienceData";
 import ScrollReveal from "./ui/ScrollReveal";
 import SectionLabel from "./ui/SectionLabel";
+import DecryptedText from "./ui/DecryptedText";
 
 const Experience = () => {
   return (
@@ -16,9 +17,17 @@ const Experience = () => {
               command="ls ./experience"
               output="total 2 · drwxr-xr-x rohan 2 roles"
             />
-            <h2 className="text-3xl font-bold tracking-tight text-mac-text dark:text-white sm:text-4xl md:text-5xl">
-              Professional <span className="text-od-purple">Experience</span>
-            </h2>
+            <DecryptedText
+              text="Professional Experience"
+              animateOn="view"
+              sequential={true}
+              revealDirection="start"
+              speed={90}
+              maxIterations={15}
+              useOriginalCharsOnly={true}
+              className="text-3xl font-bold tracking-tight text-mac-text dark:text-white sm:text-4xl md:text-5xl"
+              encryptedClassName="text-3xl font-bold tracking-tight text-od-green/60 dark:text-od-green/50 sm:text-4xl md:text-5xl"
+            />
           </ScrollReveal>
 
           {/* Vertical timeline */}
