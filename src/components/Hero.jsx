@@ -16,7 +16,7 @@ const LINKEDIN =
 const Hero = () => {
   const reduceMotion = useReducedMotion();
   const { displayed, done } = useTypewriter(
-    "Full-Stack Developer building AI-powered products"
+    "I build software that's meant to ship."
   );
 
   const [isDark, setIsDark] = useState(true);
@@ -116,9 +116,15 @@ const Hero = () => {
           {...fadeUp(0.35)}
           className="mx-auto mb-10 max-w-2xl text-sm leading-relaxed text-mac-text-secondary dark:text-gray-300 sm:text-base md:text-lg"
         >
-          I design, build, and ship production-grade web applications — from RAG
-          systems that cite their sources, not fabricate them, to e-commerce
-          platforms that hold up at scale.
+          Full-Stack Developer building{" "}
+          <span className="font-semibold text-mac-text dark:text-white">
+            AI-powered products and production-ready web applications
+          </span>{" "}
+          with MERN, AI/LLMs, and modern web technologies.
+          <br />
+          <span className="mt-2 inline-block font-semibold text-od-orange">
+            AI × Engineering × Product
+          </span>
         </motion.p>
 
         {/* Actions */}

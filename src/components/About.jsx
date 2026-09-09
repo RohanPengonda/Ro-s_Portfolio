@@ -106,25 +106,29 @@ const About = () => {
               {/* Text column */}
               <div className="space-y-4 text-[15px] leading-relaxed text-mac-text-secondary dark:text-gray-300">
                 <p>
-                  I'm a full-stack developer who builds AI-powered products —
-                  the kind of software that ships to real users and holds up
-                  under load. My work sits at the intersection of applied AI
-                  and production engineering: RAG systems that answer
-                  questions with citations, and e-commerce platforms that
-                  survive a flash sale without falling over.
+                  I'm a Full-Stack Developer focused on building AI-powered
+                  products and production-ready web applications.
                 </p>
                 <p>
-                  I care about measurable outcomes, not demo-ware. That means
-                  indexes and caching over slick slides, idempotent payments
-                  over happy-path demos, and Lighthouse scores I can point at
-                  rather than screenshots I can't defend.
+                  I work across the MERN stack, AI/LLMs, and modern web
+                  technologies — turning ideas into products that are fast,
+                  reliable, and built for real users. From RAG systems that
+                  make documents searchable and verifiable to full-stack
+                  platforms with authentication, payments, and optimized data
+                  layers, I enjoy solving problems across the entire stack.
                 </p>
                 <p>
-                  Right now I build full MERN applications for clients at Renb
-                  Digital, where I've cut page-load times by up to 30% and
-                  automated testing with Playwright. I'm always looking for the
-                  next interesting problem at the intersection of AI and
-                  reliability.
+                  At Renb Digital, I build and maintain applications for
+                  clients, working across development, performance, testing,
+                  and deployment. I've helped reduce page-load times by up to
+                  30%, built automated testing with Playwright, and optimized
+                  databases through indexing, query optimization, and caching.
+                </p>
+                <p>
+                  I'm particularly interested in the intersection of AI,
+                  product, and strong software engineering — building
+                  technology that is not only intelligent, but genuinely useful
+                  and dependable.
                 </p>
               </div>
             </div>
