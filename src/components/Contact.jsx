@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import emailjs from "@emailjs/browser";
 import {
   Mail,
   Phone,
@@ -51,34 +50,27 @@ const Contact = () => {
 
     if (!validateForm()) return;
 
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-
-    if (!serviceId || !templateId || !publicKey) {
-      setSubmitStatus("config-error");
-      return;
-    }
-
     setIsSubmitting(true);
     setSubmitStatus(null);
 
     try {
-      await emailjs.send(
-        serviceId,
-        templateId,
-        {
-          from_name: formData.name,
-          reply_to: formData.email,
+      const res = await fetch("/api/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
           subject: formData.subject,
           message: formData.message,
-        },
-        { publicKey }
-      );
+        }),
+      });
+
+      if (!res.ok) throw new Error("Failed to send");
+
       setSubmitStatus("success");
       resetForm();
     } catch (error) {
-      console.error("EmailJS error:", error);
+      console.error("Send error:", error);
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
