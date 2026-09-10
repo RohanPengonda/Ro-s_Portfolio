@@ -59,18 +59,17 @@ A modern, responsive portfolio website built with Next.js, React, and Tailwind C
 Copy `.env.example` to `.env` and configure:
 
 ```env
-# Gemini AI assistant — https://aistudio.google.com/apikey (free tier)
 NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_api_key
 
-# EmailJS — https://www.emailjs.com (free tier)
-NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
-NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
-NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+# Email via Gmail SMTP — generate an App Password at https://myaccount.google.com/apppasswords
+EMAIL_USER=your_gmail@gmail.com
+EMAIL_PASS=your_app_password
+EMAIL_TO=your_gmail@gmail.com
 
 # Contact / social
-NEXT_PUBLIC_EMAIL=your.email@example.com
-NEXT_PUBLIC_GITHUB_URL=https://github.com/yourusername
-NEXT_PUBLIC_LINKEDIN_URL=https://www.linkedin.com/in/yourprofile/
+NEXT_PUBLIC_EMAIL=rpengonda1@gmail.com
+NEXT_PUBLIC_GITHUB_URL=https://github.com/RohanPengonda
+NEXT_PUBLIC_LINKEDIN_URL=https://www.linkedin.com/in/rohanpengonda/
 
 # Resume — absolute URL or path to a static asset (e.g. /resume.pdf)
 NEXT_PUBLIC_RESUME_URL=/resume.pdf
