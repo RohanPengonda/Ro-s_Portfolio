@@ -8,7 +8,7 @@ A modern, responsive portfolio website built with Next.js, React, and Tailwind C
 - **Responsive**: Fully responsive across all devices (mobile, tablet, desktop)
 - **Performance Optimized**: Lazy loading, code splitting, and standalone build output
 - **SEO Optimized**: Meta tags, Open Graph, Twitter cards, and structured data
-- **Form Validation**: Real-time form validation with error handling via EmailJS
+- **Contact Form**: Client-side validation with a server-side API route sending email via Nodemailer (Gmail SMTP)
 - **Error Handling**: Error boundaries for graceful error management
 - **AI Chat Widget**: Gemini-powered chat assistant
 - **Accessibility**: WCAG compliant with proper ARIA labels and keyboard navigation
@@ -19,9 +19,9 @@ A modern, responsive portfolio website built with Next.js, React, and Tailwind C
 - **Frontend**: React 18
 - **Styling**: Tailwind CSS, CSS3
 - **Icons**: Lucide React, React Icons
-- **Email**: EmailJS
-- **AI**: Google Gemini API
-- **Animation**: Framer Motion
+- **Email**: Nodemailer (Gmail SMTP through server API route)
+- **AI**: Google Gemini via the `@google/genai` SDK
+- **Animation**: Framer Motion, OGL (WebGL shaders)
 
 ## Installation
 
@@ -61,6 +61,9 @@ Copy `.env.example` to `.env` and configure:
 ```env
 NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_api_key
 
+# Optional — override the default Gemini model (defaults to gemini-3.6-flash)
+NEXT_PUBLIC_GEMINI_MODEL=gemini-3.6-flash
+
 # Email via Gmail SMTP — generate an App Password at https://myaccount.google.com/apppasswords
 EMAIL_USER=your_gmail@gmail.com
 EMAIL_PASS=your_app_password
@@ -75,7 +78,7 @@ NEXT_PUBLIC_LINKEDIN_URL=https://www.linkedin.com/in/rohanpengonda/
 NEXT_PUBLIC_RESUME_URL=/resume.pdf
 ```
 
-All environment variables must be prefixed with `NEXT_PUBLIC_` to be accessible in client-side React components.
+Client-side variables must be prefixed with `NEXT_PUBLIC_` to be exposed to the browser. Variables without the prefix (e.g. `EMAIL_USER`, `EMAIL_PASS`) are server-only and are consumed by the API routes.
 
 ## Personal Information
 
@@ -95,8 +98,11 @@ src/
 ├── app/                    # Next.js App Router
 │   ├── layout.jsx          # Root layout
 │   ├── page.jsx            # Home page
-│   └── globals.css         # Global styles
+│   ├── globals.css         # Global styles
+│   └── api/                # Server API routes
+│       └── send/route.js   # Contact form email handler
 ├── components/             # React components
+│   ├── App.jsx             # Main app composition
 │   ├── About.jsx           # About section
 │   ├── Contact.jsx         # Contact form and info
 │   ├── Experience.jsx      # Work experience
@@ -107,12 +113,12 @@ src/
 │   ├── Skills.jsx          # Skills section
 │   ├── ChatWidget.jsx      # AI chat widget
 │   ├── ErrorBoundary.jsx   # Error boundary
-│   └── ui/                 # Reusable UI components
+│   └── ui/                 # Animation & UI primitives
 ├── data/                   # Data files
 ├── hooks/                  # Custom React hooks
-│   ├── useFormValidation.js
-│   └── useTypewriter.js
-├── lib/                    # Utility functions
+│   ├── useTypewriter.js
+│   └── useFormValidation.js
+├── lib/                    # Library code (gemini.js — AI client)
 └── assets/                 # Static assets
 ```
 
