@@ -132,13 +132,6 @@ The portfolio is fully responsive with breakpoints:
 
 ## Deployment (Vercel)
 
-This project is configured for Vercel deployment with standalone output.
-
-1. Push your code to GitHub
-2. Import the repository on [vercel.com](https://vercel.com)
-3. Vercel auto-detects Next.js — ensure **Framework Preset** is set to **Next.js** in Project Settings
-4. Add your environment variables in the Vercel dashboard
-5. Deploy
 
 ## License
 
