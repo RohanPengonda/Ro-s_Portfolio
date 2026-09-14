@@ -29,7 +29,7 @@ A modern, responsive portfolio website built with Next.js, React, and Tailwind C
 
    ```bash
    git clone <your-repo-url>
-   cd Ro-s_Portfolio
+   cd Portfolio
    ```
 
 2. **Install dependencies**
