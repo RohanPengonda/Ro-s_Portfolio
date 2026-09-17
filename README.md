@@ -1,4 +1,4 @@
-# Personal Portfolio
+# Portfolio
 
 A modern, responsive portfolio website built with Next.js, React, and Tailwind CSS. Features include dark mode, lazy loading, form validation, an AI chat widget, and performance optimizations.
 
