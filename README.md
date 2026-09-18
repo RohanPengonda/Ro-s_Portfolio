@@ -7,7 +7,7 @@ A modern, responsive portfolio website built with Next.js, React, and Tailwind C
 - **Modern Design**: Clean, professional design with dark/light mode support
 - **Responsive**: Fully responsive across all devices (mobile, tablet, desktop)
 - **Performance Optimized**: Lazy loading, code splitting, and standalone build output
-- **SEO Optimized**: Meta tags, Open Graph, Twitter cards, and structured data
+- **SEO Optimized**: Meta tags, Open Graph, and structured data
 - **Contact Form**: Client-side validation with a server-side API route sending email via Nodemailer (Gmail SMTP)
 - **Error Handling**: Error boundaries for graceful error management
 - **AI Chat Widget**: Gemini-powered chat assistant
