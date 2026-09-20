@@ -8,6 +8,7 @@ import TerminalCard from "./ui/TerminalCard";
 import SectionLabel from "./ui/SectionLabel";
 import DecryptedText from "./ui/DecryptedText";
 import SpotlightCard from "./ui/SpotlightCard";
+import ProjectGallery from "./ui/ProjectGallery";
 
 const accentMap = {
   purple: "text-od-purple",
@@ -135,10 +136,16 @@ const Projects = () => {
                       </div>
                     </div>
 
-                    {/* Image: code mockup for PDFChat, screenshot for others */}
+                    {/* Image: code mockup for PDFChat, gallery for others */}
                     <div className="mb-6">
                       {project.title === "PDFChat" ? (
                         <PdfchatMockup />
+                      ) : project.images?.length ? (
+                        <ProjectGallery
+                          images={project.images}
+                          title={project.title}
+                          priority={project.title === "Binkey-It"}
+                        />
                       ) : (
                         project.image && (
                           <div className="relative h-44 w-full overflow-hidden rounded-xl border border-mac-border dark:border-white/10 sm:h-56">

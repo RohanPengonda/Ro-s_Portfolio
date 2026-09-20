@@ -1,5 +1,7 @@
 import chatBanner from "../assets/chat-banner.webp";
 import blinkitBanner from "../assets/blinkit-banner.webp";
+import binkeyit2 from "../assets/binkeyit-2.png";
+import binkeyit3 from "../assets/binkeyit-3.png";
 import rochatBanner from "../assets/rochat-banner.png";
 
 export const projects = [
@@ -9,6 +11,7 @@ export const projects = [
       "An AI system that lets you have a conversation with your PDFs — with citations, not hallucinations.",
     filename: "~/projects/pdfchat.ts",
     image: chatBanner,
+    images: [],
     problem:
       "Traditional PDF search fails at understanding context or relationships between concepts. Search returns keyword hits, not answers — and definitely not verifiable ones. PDFChat bridges that gap with semantic understanding so you can actually ask questions of a document and trust the response.",
     architecture: [
@@ -67,6 +70,7 @@ export const projects = [
       "A production-grade grocery-delivery e-commerce platform — the boring infrastructure work that actually matters at scale.",
     filename: "~/projects/blinkit.ts",
     image: blinkitBanner,
+    images: [blinkitBanner, binkeyit2, binkeyit3],
     problem:
       "E-commerce clones are easy to demo, hard to make real. The hard part isn't the storefront — it's authentication, reliable payments, database performance under load, and email that actually arrives. Binkey-It is built around the infrastructure decisions that separate a prototype from a production system.",
     architecture: [
@@ -149,6 +153,7 @@ export const projects = [
       "A modern real-time chat application with authentication, read receipts, and responsive design.",
     filename: "~/projects/rochat.ts",
     image: rochatBanner,
+    images: [rochatBanner],
     problem:
       "Building a real-time chat app requires handling WebSocket connections, authentication, message persistence, and responsive UI — the infrastructure that separates a messaging demo from a production chat system.",
     architecture: [
