@@ -10,6 +10,10 @@ const ProjectGallery = ({ images, title, priority = false }) => {
   const count = images.length;
   const hasNav = count > 1;
 
+  const srcOf = (img) =>
+    typeof img === "string" ? img : img.src ?? img.href ?? img;
+  const currentSrc = srcOf(images[index]);
+
   const go = (dir) => setIndex((i) => (i + dir + count) % count);
   const prev = (e) => {
     if (e) e.stopPropagation();
@@ -47,7 +51,7 @@ const ProjectGallery = ({ images, title, priority = false }) => {
               fill
               sizes="(max-width: 768px) 100vw, 64rem"
               priority={priority && i === 0}
-              className="object-cover"
+              className="object-contain"
             />
           </div>
         ))}
@@ -151,15 +155,13 @@ const ProjectGallery = ({ images, title, priority = false }) => {
           )}
 
           <div
-            className="relative aspect-video w-full max-w-5xl overflow-hidden rounded-xl"
+            className="flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <Image
-              src={images[index]}
+            <img
+              src={currentSrc}
               alt={`${title} preview ${index + 1} of ${count}`}
-              fill
-              sizes="(max-width: 1024px) 100vw, 64rem"
-              className="object-contain"
+              className="max-h-[88vh] max-w-[94vw] rounded-xl object-contain shadow-2xl"
             />
           </div>
         </div>,
