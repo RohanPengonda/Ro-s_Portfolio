@@ -18,7 +18,7 @@ const Skills = () => {
           <ScrollReveal className="mb-12 sm:mb-16">
             <SectionLabel
               command="cat ./skills.json"
-              output="23 entries · sorted by frequency of use ↓"
+              output="24 entries · sorted by frequency of use ↓"
             />
             <DecryptedText
               text="Technical Skills"

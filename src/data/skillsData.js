@@ -21,6 +21,7 @@ import {
   SiTestinglibrary,
 } from "react-icons/si";
 import { DiDatabase } from "react-icons/di";
+import { TbPrompt } from "react-icons/tb";
 
 export const skillCategories = [
   {
@@ -51,6 +52,7 @@ export const skillCategories = [
   {
     name: "AI/LLM & Tools",
     skills: [
+      { name: "Prompt Engineering", icon: TbPrompt, color: "#a371f7" },
       { name: "OpenAI API", icon: SiOpenai, color: "#412991" },
       { name: "RAG Pipelines", icon: SiOpenai, color: "#a371f7" },
       { name: "AWS", icon: SiAmazonwebservices, color: "#FF9900" },
