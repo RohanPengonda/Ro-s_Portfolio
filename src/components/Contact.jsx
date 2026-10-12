@@ -20,7 +20,7 @@ import ShinyText from "./ui/ShinyText";
 
 const iconMap = { Mail, Phone, MapPin, Github, Linkedin };
 const EMAIL = process.env.NEXT_PUBLIC_EMAIL || "rpengonda1@gmail.com";
-const RESUME_URL = process.env.NEXT_PUBLIC_RESUME_URL || "/resume.pdf";
+const RESUME_URL = (process.env.NEXT_PUBLIC_RESUME_URL || "").trim();
 
 const Contact = () => {
   const [submitStatus, setSubmitStatus] = useState(null);
@@ -64,6 +64,11 @@ const Contact = () => {
           message: formData.message,
         }),
       });
+
+      if (res.status === 503) {
+        setSubmitStatus("config-error");
+        return;
+      }
 
       if (!res.ok) throw new Error("Failed to send");
 
@@ -308,15 +313,17 @@ const Contact = () => {
                 </div>
 
                 {/* Resume */}
-                <a
-                  href={RESUME_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="glass-strong glass-hover flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 font-mono text-sm font-medium text-mac-text dark:text-white"
-                >
-                  <Download size={15} className="text-od-green" />
-                  download resume
-                </a>
+                {RESUME_URL && (
+                  <a
+                    href={RESUME_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="glass-strong glass-hover flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 font-mono text-sm font-medium text-mac-text dark:text-white"
+                  >
+                    <Download size={15} className="text-od-green" />
+                    download resume
+                  </a>
+                )}
 
                 {/* Socials */}
                 <div>

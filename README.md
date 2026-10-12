@@ -62,10 +62,11 @@ A modern, responsive portfolio website built with Next.js, React, and Tailwind C
 Copy `.env.example` to `.env` and configure:
 
 ```env
-NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_api_key
+# Server-side only — never prefix with NEXT_PUBLIC_
+GEMINI_API_KEY=your_gemini_api_key
 
-# Optional — override the default Gemini model (defaults to gemini-3.6-flash)
-NEXT_PUBLIC_GEMINI_MODEL=gemini-3.6-flash
+# Optional — override the default Gemini model (defaults to gemini-3.8-flash)
+GEMINI_MODEL=gemini-3.8-flash
 
 # Email via Gmail SMTP — generate an App Password at https://myaccount.google.com/apppasswords
 EMAIL_USER=your_gmail@gmail.com
@@ -77,11 +78,12 @@ NEXT_PUBLIC_EMAIL=rpengonda1@gmail.com
 NEXT_PUBLIC_GITHUB_URL=https://github.com/RohanPengonda
 NEXT_PUBLIC_LINKEDIN_URL=https://www.linkedin.com/in/rohanpengonda/
 
-# Resume — absolute URL or path to a static asset (e.g. /resume.pdf)
-NEXT_PUBLIC_RESUME_URL=/resume.pdf
+# Resume — absolute URL or path to a static asset in /public (e.g. /resume.pdf).
+# Leave blank to hide the download-resume buttons.
+NEXT_PUBLIC_RESUME_URL=
 ```
 
-Client-side variables must be prefixed with `NEXT_PUBLIC_` to be exposed to the browser. Variables without the prefix (e.g. `EMAIL_USER`, `EMAIL_PASS`) are server-only and are consumed by the API routes.
+Client-side variables must be prefixed with `NEXT_PUBLIC_` to be exposed to the browser. Variables without the prefix (e.g. `GEMINI_API_KEY`, `EMAIL_USER`, `EMAIL_PASS`) are server-only and are consumed by the API routes — the Gemini key is never sent to the browser.
 
 ## Personal Information
 
@@ -103,7 +105,8 @@ src/
 │   ├── page.jsx            # Home page
 │   ├── globals.css         # Global styles
 │   └── api/                # Server API routes
-│       └── send/route.js   # Contact form email handler
+│       ├── send/route.js   # Contact form email handler
+│       └── chat/route.js   # Server-side Gemini chat proxy (keeps API key private)
 ├── components/             # React components
 │   ├── App.jsx             # Main app composition
 │   ├── About.jsx           # About section
@@ -121,7 +124,7 @@ src/
 ├── hooks/                  # Custom React hooks
 │   ├── useTypewriter.js
 │   └── useFormValidation.js
-├── lib/                    # Library code (gemini.js — AI client)
+├── lib/                    # Library code (gemini.js — server-side AI client)
 └── assets/                 # Static assets
 ```
 

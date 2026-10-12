@@ -19,7 +19,7 @@ export const metadata = {
     'Full-Stack Developer building AI-powered products. I design, build, and ship production-grade web apps — from RAG systems that cite their sources to e-commerce platforms that scale. React, Node, and applied AI.',
   keywords:
     'Full-Stack Developer, AI Engineer, AI Products, React Developer, Node.js Developer, MongoDB, RAG, TypeScript, Web Development, JavaScript',
-  author: 'Rohan Pengonda',
+  authors: [{ name: 'Rohan Pengonda', url: 'https://rohanpengonda.vercel.app/' }],
   robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
   metadataBase: new URL('https://rohanpengonda.vercel.app'),
   openGraph: {

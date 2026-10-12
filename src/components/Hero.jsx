@@ -7,7 +7,7 @@ import WarpText from "./ui/WarpText";
 import HeroBackground from "./ui/HeroBackground";
 import ShinyText from "./ui/ShinyText";
 
-const RESUME_URL = process.env.NEXT_PUBLIC_RESUME_URL || "/resume.pdf";
+const RESUME_URL = (process.env.NEXT_PUBLIC_RESUME_URL || "").trim();
 const EMAIL = process.env.NEXT_PUBLIC_EMAIL || "rpengonda1@gmail.com";
 const GITHUB = process.env.NEXT_PUBLIC_GITHUB_URL || "https://github.com/RohanPengonda";
 const LINKEDIN =
@@ -132,21 +132,23 @@ const Hero = () => {
           {...fadeUp(0.45)}
           className="mb-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
         >
-          <a
-            href={RESUME_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex w-full items-center justify-center gap-2 rounded-xl bg-od-orange px-7 py-3 font-mono text-sm font-medium text-white shadow-md transition-all duration-200 hover:bg-od-orange/90 hover:shadow-glow-orange sm:w-auto"
-          >
-            <Download size={16} />
-            <ShinyText
-              text="Download Resume"
-              speed={3}
-              color="rgba(255,255,255,0.9)"
-              shineColor="#ffe9d6"
-              direction="left"
-            />
-          </a>
+          {RESUME_URL && (
+            <a
+              href={RESUME_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex w-full items-center justify-center gap-2 rounded-xl bg-od-orange px-7 py-3 font-mono text-sm font-medium text-white shadow-md transition-all duration-200 hover:bg-od-orange/90 hover:shadow-glow-orange sm:w-auto"
+            >
+              <Download size={16} />
+              <ShinyText
+                text="Download Resume"
+                speed={3}
+                color="rgba(255,255,255,0.9)"
+                shineColor="#ffe9d6"
+                direction="left"
+              />
+            </a>
+          )}
           <button
             onClick={() => scrollTo("#about")}
             className="glass glass-hover w-full rounded-xl px-7 py-3 font-mono text-sm text-mac-text dark:text-gray-200 sm:w-auto"

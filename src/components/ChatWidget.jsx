@@ -2,7 +2,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Send, X, Bot, Sparkles, ChevronDown } from 'lucide-react';
-import { askGemini, isAIConfigured } from '../lib/gemini';
 
 const SUGGESTIONS = [
   'Who is Rohan?',
@@ -125,9 +124,25 @@ const ChatWidget = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [aiEnabled, setAiEnabled] = useState(true);
   const reduceMotion = useReducedMotion();
   const bottomRef = useRef(null);
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    let active = true;
+    fetch('/api/chat')
+      .then((res) => (res.ok ? res.json() : { configured: true }))
+      .then((data) => {
+        if (active && typeof data?.configured === 'boolean') {
+          setAiEnabled(data.configured);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, []);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -144,39 +159,72 @@ const ChatWidget = () => {
     const trimmed = (text ?? input).trim();
     if (!trimmed || isTyping) return;
 
+    const history = messages
+      .filter(m => m.content)
+      .map(m => ({ role: m.role, content: m.content }));
     const userMsg = { role: 'user', content: trimmed };
     const assistantMsg = { role: 'assistant', content: '', streaming: true };
     setMessages(m => [...m, userMsg, assistantMsg]);
     setInput('');
     setIsTyping(true);
 
-    const result = await askGemini(trimmed, chunk => {
+    const patchAssistant = updater =>
       setMessages(m => {
         const next = [...m];
-        const last = next[next.length - 1];
-        if (last && last.streaming) {
-          next[next.length - 1] = { ...last, content: last.content + chunk };
+        const idx = next.length - 1;
+        if (next[idx] && next[idx].streaming) {
+          next[idx] = updater(next[idx]);
         }
         return next;
       });
-    }).catch(() => ({
-      text: 'Something went wrong on my side. Please try again in a moment.',
-      ok: false,
-    }));
 
-    setMessages(m => {
-      const next = [...m];
-      const idx = next.length - 1;
-      if (next[idx] && next[idx].streaming) {
-        next[idx] = {
-          role: 'assistant',
-          content: result.text,
-          isError: !result.ok,
-        };
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: trimmed, history }),
+      });
+
+      if (!res.ok || !res.body) {
+        let detail = '';
+        try {
+          detail = (await res.json())?.error ?? '';
+        } catch {
+          detail = '';
+        }
+        throw new Error(detail || 'Something went wrong on my side.');
       }
-      return next;
-    });
-    setIsTyping(false);
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let content = '';
+
+      for (;;) {
+        const { value, done } = await reader.read();
+        if (done) break;
+        const chunk = decoder.decode(value, { stream: true });
+        if (!chunk) continue;
+        content += chunk;
+        patchAssistant(last => ({ ...last, content: last.content + chunk }));
+      }
+
+      patchAssistant(() => ({
+        role: 'assistant',
+        content:
+          content || "Sorry, I couldn't generate a response. Please try again.",
+        isError: !content,
+      }));
+    } catch (error) {
+      patchAssistant(() => ({
+        role: 'assistant',
+        content:
+          error?.message ||
+          'Something went wrong on my side. Please try again in a moment.',
+        isError: true,
+      }));
+    } finally {
+      setIsTyping(false);
+    }
   };
 
   const handleKeyDown = e => {
@@ -326,22 +374,22 @@ const ChatWidget = () => {
                   onKeyDown={handleKeyDown}
                   rows={1}
                   placeholder="ask a question..."
-                  disabled={!isAIConfigured()}
+                  disabled={!aiEnabled}
                   className="glass custom-scrollbar max-h-32 w-full resize-none rounded-xl px-3.5 py-2.5 font-mono text-[13px] text-mac-text placeholder:text-mac-text-secondary/60 focus:outline-none focus:ring-2 focus:ring-od-orange/40 dark:text-gray-200 dark:placeholder:text-gray-500"
                 />
                 <button
                   onClick={() => send()}
-                  disabled={!input.trim() || isTyping || !isAIConfigured()}
+                  disabled={!input.trim() || isTyping || !aiEnabled}
                   aria-label="Send message"
                   className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-od-orange text-white transition-colors hover:bg-od-orange/90 disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   <Send size={16} />
                 </button>
               </div>
-              {!isAIConfigured() && (
+              {!aiEnabled && (
                 <p className="mt-2 flex items-center gap-1.5 font-mono text-[10px] text-od-red">
                   <ChevronDown size={12} />
-                  Gemini not configured — add NEXT_PUBLIC_GEMINI_API_KEY
+                  Gemini not configured — set GEMINI_API_KEY on the server
                 </p>
               )}
             </div>
